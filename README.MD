@@ -1,6 +1,6 @@
-##BorderRecognition
+#BorderRecognition
 
-#Projekt maj¹cy na celu znajdowaæ "ramkê" obrazu rozproszeniowego Mie'go.
+###Projekt maj¹cy na celu znajdowaæ "ramkê" obrazu rozproszeniowego Mie'go.
 
 "Ramka" jest rysowana funkcj¹ BorderCreation
 f(PkX,PkY,PkZ,CCDX,CCDY,CCDZ): R^6 -> R^2
