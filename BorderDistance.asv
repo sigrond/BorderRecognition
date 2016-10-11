@@ -1,0 +1,9 @@
+function [ distance ] = BorderDistance( X,Y,Px,Py )
+%BORDERDISTANCE funkcja ma zwracaæ odleg³oœæ punktu od ramki
+%   Detailed explanation goes here
+dX=(X-Px).^2;
+dY=(Y-Py).^2;
+Distances=(dX+dY);
+
+end
+

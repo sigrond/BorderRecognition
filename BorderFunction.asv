@@ -3,6 +3,7 @@ function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD )
 %   Detailed explanation goes here
 
 handles.S=SetSystem;
+handles.S.lambda=
 handles.S.m2 = Calculate_m(25,handles.S.lambda, 'BK7');
 
 handles.S.Pk(1)=PkX;
