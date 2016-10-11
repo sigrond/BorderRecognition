@@ -16,9 +16,9 @@ Wstêpna wersja projektu zak³ada rêczne zaznaczenie punktów na brzegu obrazu rozp
 
 ##Wywo³anie demonstracji w Matlabie
 %za³adowaæ klatkê z filmu
-load('Frame.mat');
+`load('Frame.mat');`
 %wywo³aæ funkcje z argumentami
-[ Pk, PCCD ]=BorderRecognition(Frame)
+`[ Pk, PCCD ]=BorderRecognition(Frame)`
 
 %nastêpnie w wyœwietlonym okienku zaznaczyæ punkty na brzegu
 %obrazu rozproszeniowego (zakoñczenie zaznaczanie przez
