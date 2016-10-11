@@ -15,10 +15,11 @@ Wstêpna wersja projektu zak³ada rêczne zaznaczenie punktów na brzegu obrazu rozp
 *1) Do zbadania, czy tak bêdzie wystarczaj¹co dobrze.
 
 ##Wywo³anie demonstracji w Matlabie
+```Matlab
 %za³adowaæ klatkê z filmu
-`load('Frame.mat');`
+load('Frame.mat');
 %wywo³aæ funkcje z argumentami
-`[ Pk, PCCD ]=BorderRecognition(Frame)`
+[ Pk, PCCD ]=BorderRecognition(Frame)
 
 %nastêpnie w wyœwietlonym okienku zaznaczyæ punkty na brzegu
 %obrazu rozproszeniowego (zakoñczenie zaznaczanie przez
@@ -28,3 +29,4 @@ Wstêpna wersja projektu zak³ada rêczne zaznaczenie punktów na brzegu obrazu rozp
 %obecnym etapie optymalizacji.
 %po zakoñczeniu minimalizacji zostanie wyœwietlona ostatecza
 % wersja ramki, a jej parametry s¹ zwracane w Pk i PCCD.
+```
