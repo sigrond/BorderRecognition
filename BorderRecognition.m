@@ -7,21 +7,33 @@ ha = get(hf,'CurrentAxes');
 hold(ha,'on');
 h = impoly(ha);
 position = wait(h);
+delete(h);
 
+tic;
+hs=scatter(ha,position(:,1),position(:,2),'filled');
 
-
-
-% \todo funkcja licz¹ca sumê kwadratów najmniejszych odleg³oœci punktów od
-%ramki
-%fminsearch
 Position=position;
-options = optimset('Display','iter');
-[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(Position,x),[0,0,0,0,0,85],options);
+
+[X Y]=BorderFunction(0,0,0,0,0,82);
+hp=plot(ha,X,Y,'r');
+
+function stop = myoutfun(x, optimValues, state)
+stop = false;
+[X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6));
+delete(hp);
+hp=plot(ha,X,Y,'r');
+drawnow
+end
+
+options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',50);
+
+[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(Position,x),[0,0,0,0,0,82],options);
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6));
-plot(ha,X,Y,'r');
+delete(hp);
+hp=plot(ha,X,Y,'r');
 
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
-
+toc
 end
 
