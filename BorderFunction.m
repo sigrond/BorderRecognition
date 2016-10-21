@@ -1,8 +1,11 @@
-function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD )
+function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD,lambda )
 %BorderFunction funkcja generuj¹ca ramkê
 %   Detailed explanation goes here
 
 handles.S=SetSystem;
+if(exist('lambda','var'))
+    handles.S.lambda=lambda;
+end
 handles.S.m2 = Calculate_m(25,handles.S.lambda, 'BK7');
 
 handles.S.Pk(1)=PkX;

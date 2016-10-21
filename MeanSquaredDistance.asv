@@ -24,7 +24,7 @@ for i=1:length(PositionB(:,1))
     distance=distance+(BorderDistance(X,Y,PositionB(i,1),PositionB(i,2)))^2;
 end
 
-distance=distance/((length(PositionR(:,1))+length(PositionB(:,1)))^2);
+distance=distance/(length(PositionR(:,1))^2);
 
 end
 

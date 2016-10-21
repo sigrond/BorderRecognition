@@ -2,25 +2,17 @@ function [ Pk, PCCD ] = BorderRecognition( Frame )
 %BORDERRECOGNITION Summary of this function goes here
 %   Detailed explanation goes here
 hf = imtool( Frame./(max(max(max(Frame)))/20) );
-set(hf,'name','Select Border Points for red color!')
+set(hf,'name','Select Border Points!')
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
 h = impoly(ha);
-positionr = wait(h);
+position = wait(h);
 delete(h);
 
-hs=scatter(ha,positionr(:,1),positionr(:,2),'filled','MarkerFaceColor','m');
-
-set(hf,'name','Select Border Points for blue color!')
-hb = impoly(ha);
-positionb = wait(hb);
-delete(hb);
-
-hs=scatter(ha,positionb(:,1),positionb(:,2),'filled','MarkerFaceColor','c');
-
 tic;
+hs=scatter(ha,position(:,1),position(:,2),'filled','MarkerFaceColor',);
 
-%Position=position;
+Position=position;
 
 r=658;
 g=532;
@@ -45,7 +37,7 @@ end
 
 options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
 
-[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(positionr,positionb,x),[0,0,0,0,0,82],options);
+[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(Position,x),[0,0,0,0,0,82],options);
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
 delete(hp);
 hp=plot(ha,X,Y,'-xr');
