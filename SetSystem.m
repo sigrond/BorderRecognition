@@ -26,7 +26,7 @@ S.ll   = 37.4+1.3;   % Distance between lenses apex-apex + optical length in pol
 S.ld2  = 58.3 + S.l1; % 58.3 - distence from first lens to second diafragm  %76.6; % Distance to second diaphragm
 % Wavelength of incident ray
 S.lambda = 513; %lambda can has the structure of RGB lambda(1:3) = [R,G,B];
-S.N  =   20;    % number of points per border side
+S.N  =   60;    % number of points per border side
 % Effective lens aperture (diameter) % 11.8 suggested by GD
 S.efD  = effective_aperture(S.D/2,S.tc,S.l1,S.lambda,25);
 % First Diaphragm

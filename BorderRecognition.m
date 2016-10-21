@@ -15,22 +15,23 @@ hs=scatter(ha,position(:,1),position(:,2),'filled');
 Position=position;
 
 [X Y]=BorderFunction(0,0,0,0,0,82);
-hp=plot(ha,X,Y,'r');
+hp=plot(ha,X,Y,'-xr');
 
 function stop = myoutfun(x, optimValues, state)
 stop = false;
 [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6));
 delete(hp);
-hp=plot(ha,X,Y,'r');
+hp=plot(ha,X,Y,'-xr');
+set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))
 drawnow
 end
 
-options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',50);
+options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
 
 [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(Position,x),[0,0,0,0,0,82],options);
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6));
 delete(hp);
-hp=plot(ha,X,Y,'r');
+hp=plot(ha,X,Y,'-xr');
 
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];

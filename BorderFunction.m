@@ -1,5 +1,5 @@
 function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD )
-%UNTITLED Summary of this function goes here
+%BorderFunction funkcja generuj¹ca ramkê
 %   Detailed explanation goes here
 
 handles.S=SetSystem;
@@ -79,6 +79,15 @@ handles.Br=Br;
 for i = 1:size(handles.Br,1)
        Pd = [ handles.Br(i,1), handles.Br(i,2), handles.Br(i,3) ]; % Points on the diaphragm plane 
        P = RayTracing(Pd,handles.S);
+       if size(P,1) ~= 11
+           if(i==1)
+               W1(i)=0;
+               Hi1(i)=0;
+           else
+           W1(i) = W1(i-1);
+           Hi1(i) = Hi1(i-1);
+           end
+       else
 %              if size(P,1) == 7
                  W1(i) = P(7,2);
                  Hi1(i) = P(7,3);
@@ -86,7 +95,7 @@ for i = 1:size(handles.Br,1)
               % Terminate the rays that don't hit the CCD element   
 %                  W1(i) = NaN;
 %                  Hi1(i) = NaN;
-%              end
+       end
  end
 % Recalculation meters to pixels
 % shifting the  origin to middle of the image.
