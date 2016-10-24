@@ -5,6 +5,7 @@ function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD,lambda )
 handles.S=SetSystem;
 if(exist('lambda','var'))
     handles.S.lambda=lambda;
+    handles.S.efD  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,handles.S.lambda,25);
 end
 handles.S.m2 = Calculate_m(25,handles.S.lambda, 'BK7');
 
