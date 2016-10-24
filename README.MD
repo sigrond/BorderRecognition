@@ -14,6 +14,43 @@ Wstêpna wersja projektu zak³ada rêczne zaznaczenie punktów na brzegu obrazu rozp
 
 *1) Do zbadania, czy tak bêdzie wystarczaj¹co dobrze.
 
+##Zale¿noœci i u¿yte toolboxy Matlaba
+license('inuse')
+image_toolbox
+matlab
+
+[f,p]=matlab.codetools.requiredFilesAndProducts('BorderRecognition.m')
+
+f = 
+
+  Columns 1 through 3
+
+    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+
+  Columns 4 through 6
+
+    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+
+  Columns 7 through 8
+
+    'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+
+
+p = 
+
+1x2 struct array with fields:
+
+    Name
+    Version
+    ProductNumber
+    Certain
+	
+	
+'MATLAB'	'8.6'	1	true
+'Image Processing Toolbox'	'9.3'	17	true
+
+
+
 ##Wywo³anie demonstracji w Matlabie
 ```Matlab
 %za³adowaæ klatkê z filmu
