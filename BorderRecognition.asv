@@ -2,7 +2,7 @@ function [ Pk, PCCD ] = BorderRecognition( Frame )
 %BORDERRECOGNITION Procedura dobierania parametrów ramki do filmu
 %   Detailed explanation goes here
 %hf = imtool( Frame./(max(max(max(Frame)))/20) );
-hf = imtool( Frame(:,:,1) );
+hf = imtool( Frame(:,:,1)./(max(max(Frame(:,:,1)))/20) );
 set(hf,'name','Select Border Points for red color!')
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
@@ -11,9 +11,7 @@ positionr = wait(h);
 delete(h);
 
 delete(hf);
-hf = imtool( Frame(:,:,3) );
-ha = get(hf,'CurrentAxes');
-hold(ha,'on');
+hf = imtool( Frame(:,:,3)./(max(max(Frame(:,:,3)))/20) );
 
 hs=scatter(ha,positionr(:,1),positionr(:,2),'filled','MarkerFaceColor','m');
 
@@ -21,12 +19,6 @@ set(hf,'name','Select Border Points for blue color!')
 hb = impoly(ha);
 positionb = wait(hb);
 delete(hb);
-
-delete(hf);
-hf = imtool( Frame./(max(max(max(Frame)))/20) );
-ha = get(hf,'CurrentAxes');
-hold(ha,'on');
-hs=scatter(ha,positionr(:,1),positionr(:,2),'filled','MarkerFaceColor','m');
 
 hs=scatter(ha,positionb(:,1),positionb(:,2),'filled','MarkerFaceColor','c');
 
