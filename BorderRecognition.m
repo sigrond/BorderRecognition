@@ -1,6 +1,15 @@
-function [ Pk, PCCD ] = BorderRecognition( Frame )
+function [ Pk, PCCD ] = BorderRecognition( Frame, initial_point )
 %BORDERRECOGNITION Procedura dobierania parametrów ramki do filmu
 %   Detailed explanation goes here
+
+if(exist('initial_point','var'))
+    if(length(initial_point)~=6)
+        initial_point=[0,0,0,0,0,82];
+    end
+else
+    initial_point=[0,0,0,0,0,82];
+end
+
 %hf = imtool( Frame./(max(max(max(Frame)))/20) );
 hf = imtool( Frame(:,:,1) );
 set(hf,'name','Select Border Points for red color!')
@@ -57,7 +66,7 @@ end
 
 options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
 
-[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(positionr,positionb,x),[0,0,0,0,0,82],options);
+[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(positionr,positionb,x),initial_point,options);
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
 delete(hp);
 hp=plot(ha,X,Y,'-xr');
