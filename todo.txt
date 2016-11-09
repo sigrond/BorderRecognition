@@ -1,0 +1,4 @@
+sprobowaæ opisaæ krzywe
+wzór generuj¹cy punkty ramki
+lok angesiego
+a^3/(a^2+x^2)

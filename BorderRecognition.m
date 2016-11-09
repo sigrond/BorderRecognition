@@ -64,9 +64,16 @@ set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))
 drawnow
 end
 
+if 0
 options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
 
 [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(positionr,positionb,x),initial_point,options);
+
+else
+    options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on');
+    [Args, f,exitflag,output]=fminunc(@(x)MeanSquaredDistance(positionr,positionb,x),initial_point,options);
+end
+
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
 delete(hp);
 hp=plot(ha,X,Y,'-xr');

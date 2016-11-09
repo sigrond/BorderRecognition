@@ -26,5 +26,9 @@ end
 
 distance=distance/((length(PositionR(:,1))+length(PositionB(:,1)))^2);
 
+if(distance==NaN || distance==Inf)
+    distance=1280;
+end
+
 end
 
