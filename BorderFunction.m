@@ -16,7 +16,11 @@ handles.shX=shX;
 handles.shY=shY;
 handles.S.lCCD=lCCD;
 
-Br = zeros(4*handles.S.N,3);       % vector of border points
+horizontalPoints=10;
+verticalPoints=30;
+
+%Br = zeros(4*handles.S.N,3);       % vector of border points
+Br = zeros(horizontalPoints*2+verticalPoints*2,3);
 % calculation of position for the 4 outer points
 alpha = asin(handles.S.dW/2/handles.S.R_midl_El);
 [X(1),Y(1)] = pol2cart(alpha,handles.S.R_midl_El);
@@ -52,31 +56,46 @@ P(7,3)   = handles.S.dH/2;
 P(8,1:2) = P(5,1:2);
 P(8,3)   = handles.S.dH/2;
 %
-Br(1:handles.S.N,1) = ones(1,handles.S.N)*P(1,1);
-Br(1:handles.S.N,2) = ones(1,handles.S.N)*P(1,2);
-Br(1:handles.S.N,3) = linspace(P(2,3),P(1,3),handles.S.N);
+%Br(1:handles.S.N,1) = ones(1,handles.S.N)*P(1,1);
+Br(1:horizontalPoints,1) = ones(1,horizontalPoints)*P(1,1);
+%Br(1:handles.S.N,2) = ones(1,handles.S.N)*P(1,2);
+Br(1:horizontalPoints,2) = ones(1,horizontalPoints)*P(1,2);
+%Br(1:handles.S.N,3) = linspace(P(2,3),P(1,3),handles.S.N);
+Br(1:horizontalPoints,3) = linspace(P(2,3),P(1,3),horizontalPoints);
+
 V1 = P(6,:); % directing vector from origin to point 6
 V2 = P(5,:); % directing vector from origin to point 5
 Bt1 = acos( dot( V1(1:2) ,[1,0])/norm( V1(1:2) ));
 Bt2 = acos( dot(V2(1:2),[1,0])/norm(V2(1:2)));
-VBt = linspace(Bt1,-Bt2,handles.S.N);
+%VBt = linspace(Bt1,-Bt2,handles.S.N);
+VBt = linspace(Bt1,-Bt2,verticalPoints);
 %
 [X,Y] = pol2cart(VBt,handles.S.R_dis_Ring);
 
-Br((handles.S.N+1):2*handles.S.N,1) = X;
-Br((handles.S.N+1):2*handles.S.N,2) = Y;
-Br((handles.S.N+1):2*handles.S.N,3) = -ones(1,handles.S.N)*handles.S.dH/2;
+%Br((handles.S.N+1):2*handles.S.N,1) = X;
+Br((horizontalPoints+1):horizontalPoints+verticalPoints,1) = X;
+%Br((handles.S.N+1):2*handles.S.N,2) = Y;
+Br((horizontalPoints+1):horizontalPoints+verticalPoints,2) = Y;
+%Br((handles.S.N+1):2*handles.S.N,3) = -ones(1,handles.S.N)*handles.S.dH/2;
+Br((horizontalPoints+1):horizontalPoints+verticalPoints,3) = -ones(1,verticalPoints)*handles.S.dH/2;
 
-Br((2*handles.S.N+1):3*handles.S.N,1) = ones(1,handles.S.N)*P(4,1);
-Br((2*handles.S.N+1):3*handles.S.N,2) = ones(1,handles.S.N)*P(4,2);
-Br((2*handles.S.N+1):3*handles.S.N,3) = linspace(P(4,3),P(3,3),handles.S.N);
+%Br((2*handles.S.N+1):3*handles.S.N,1) = ones(1,handles.S.N)*P(4,1);
+Br((horizontalPoints+verticalPoints+1):horizontalPoints*2+verticalPoints,1) = ones(1,horizontalPoints)*P(4,1);
+%Br((2*handles.S.N+1):3*handles.S.N,2) = ones(1,handles.S.N)*P(4,2);
+Br((horizontalPoints+verticalPoints+1):horizontalPoints*2+verticalPoints,2) = ones(1,horizontalPoints)*P(4,2);
+%Br((2*handles.S.N+1):3*handles.S.N,3) = linspace(P(4,3),P(3,3),handles.S.N);
+Br((horizontalPoints+verticalPoints+1):horizontalPoints*2+verticalPoints,3) = linspace(P(4,3),P(3,3),horizontalPoints);
 
-VBt = linspace(-Bt2,Bt1,handles.S.N);
+%VBt = linspace(-Bt2,Bt1,handles.S.N);
+VBt = linspace(-Bt2,Bt1,verticalPoints);
 %
 [X,Y] = pol2cart(VBt,handles.S.R_dis_Ring);
-Br((3*handles.S.N+1):4*handles.S.N,1) = X;
-Br((3*handles.S.N+1):4*handles.S.N,2) = Y;
-Br((3*handles.S.N+1):4*handles.S.N,3) = ones(1,handles.S.N)*handles.S.dH/2;
+%Br((3*handles.S.N+1):4*handles.S.N,1) = X;
+Br((horizontalPoints*2+verticalPoints+1):horizontalPoints*2+verticalPoints*2,1) = X;
+%Br((3*handles.S.N+1):4*handles.S.N,2) = Y;
+Br((horizontalPoints*2+verticalPoints+1):horizontalPoints*2+verticalPoints*2,2) = Y;
+%Br((3*handles.S.N+1):4*handles.S.N,3) = ones(1,handles.S.N)*handles.S.dH/2;
+Br((horizontalPoints*2+verticalPoints+1):horizontalPoints*2+verticalPoints*2,3) = ones(1,verticalPoints)*handles.S.dH/2;
 
 handles.Br=Br;
 
