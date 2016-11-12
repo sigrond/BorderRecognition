@@ -70,7 +70,7 @@ options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun
 [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(positionr,positionb,x),initial_point,options);
 
 else
-    options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on');
+    options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on','MaxFunEvals',1200);
     [Args, f,exitflag,output]=fminunc(@(x)MeanSquaredDistance(positionr,positionb,x),initial_point,options);
 end
 
