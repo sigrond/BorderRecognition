@@ -11,7 +11,7 @@ else
 end
 
 %hf = imtool( Frame./(max(max(max(Frame)))/20) );
-hf = imtool( Frame(:,:,1) );
+hf = imtool( Frame(:,:,1)./(max(max(Frame(:,:,1)))) );
 set(hf,'name','Select Border Points for red color!')
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
@@ -20,7 +20,7 @@ positionr = wait(h);
 delete(h);
 
 delete(hf);
-hf = imtool( Frame(:,:,3) );
+hf = imtool( Frame(:,:,3)./(max(max(Frame(:,:,3)))) );
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
 
@@ -80,6 +80,8 @@ hp=plot(ha,X,Y,'-xr');
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),b);
 delete(hpb);
 hpb=plot(ha,X,Y,'-xb');
+
+output
 
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
