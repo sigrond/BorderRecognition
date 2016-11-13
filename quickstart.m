@@ -1,2 +1,6 @@
 load('Summed.mat');
-[ Pk, PCCD ]=BorderRecognition(temp)
+try
+[ Pk, PCCD ]=BorderRecognition(temp, [Pk PCCD])
+catch
+    [ Pk, PCCD ]=BorderRecognition(temp)
+end
