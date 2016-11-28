@@ -4,12 +4,12 @@ function [ Bright, Dim ] = BrightInDimOut( Frame, X, Y )
 %   Detailed explanation goes here
 Bw1 = roipoly(Frame,X,Y);
 f=Frame./max(max(Frame));
-fge=f>0.1;
+fge=f>0.105;
 FB=fge.*Bw1;
 Bright=sum(sum(FB,2),1);
 
 Bw2=~Bw1;
-fle=f<0.1;
+fle=f<0.105;
 FD=fle.*Bw2;
 Dim=sum(sum(FD,2),1);
 

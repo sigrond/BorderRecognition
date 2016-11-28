@@ -16,12 +16,12 @@ lCCD=Args(6);
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
 [Br, Dr]=BrightInDimOut(Frame(:,:,1),X,Y);
 
-[X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,b);
-[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
+%[X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,b);
+%[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
 
-a=2;
+a=1;
 b=1;
-score=-(a*(Br+Bb)+b*(Dr+Db));
+score=-(a*(Br)+b*(Dr));
 
 end
 
