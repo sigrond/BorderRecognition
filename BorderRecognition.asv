@@ -59,11 +59,11 @@ hpb=plot(ha,X,Y,'-xb');
 function stop = myoutfun(x, optimValues, state)
 stop = false;
 [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),r);
-%[Br, Dr]=BrightInDimOut(Frame(:,:,1),X,Y);
+[Br, Dr]=BrightInDimOut(Frame(:,:,1),X,Y);
 delete(hp);
 hp=plot(ha,X,Y,'-xr');
 [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),b);
-%[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
+[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
 delete(hpb);
 hpb=plot(ha,X,Y,'-xb');
 set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))

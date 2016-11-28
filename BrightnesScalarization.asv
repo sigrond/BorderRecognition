@@ -1,0 +1,22 @@
+function [ output_args ] = BrightnesScalarization( Frame, Args )
+%BrightnesScalarization funkcja skalaryzujaca jasnoœæ na zewn¹trz i
+%wewn¹trz
+%   Detailed explanation goes here
+r=658;
+g=532;
+b=458;
+
+Px=Args(1);
+Py=Args(2);
+Pz=Args(3);
+ShX=Args(4);
+ShY=Args(5);
+lCCD=Args(6);
+
+[X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
+[Br, Dr]=BrightInDimOut(Frame(:,:,1),X,Y);
+
+[X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,b);
+
+end
+
