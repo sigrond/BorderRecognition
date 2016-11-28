@@ -55,6 +55,8 @@ hpb=plot(ha,X,Y,'-xb');
 function stop = myoutfun(x, optimValues, state)
 stop = false;
 [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),r);
+[B, D]=BrightInDimOut(Frame(:,:,1),X,Y);
+display(B+D);
 delete(hp);
 hp=plot(ha,X,Y,'-xr');
 [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),b);
