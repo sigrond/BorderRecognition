@@ -36,7 +36,9 @@ delete(hf);
 
 hf = imtool( Frame./(max(max(max(Frame)))/20) );
 end
-hf = imtool( Frame(:,:,1)./max(max(Frame(:,:,1)))>0.105 );
+hf = imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))>0.105)|(Frame(:,:,3)./max(max(Frame(:,:,3)))>0.017) );
+imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))<0.105)&(Frame(:,:,3)./max(max(Frame(:,:,3)))<0.017) );
+%imtool( (Frame(:,:,3)./max(max(Frame(:,:,3)))>0.09) );
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
 if 0
