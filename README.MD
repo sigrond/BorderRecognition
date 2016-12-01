@@ -6,13 +6,26 @@
 f(PkX,PkY,PkZ,CCDX,CCDY,CCDZ): R^6 -> R^2^n
 funkcja ta nie jest znan¹ funkcj¹ analityczn¹ i ko¿ysta z ray tracingu
 
-Wstêpna wersja projektu zak³ada rêczne zaznaczenie punktów na brzegu obrazu rozproszeniowego. Po wprowadzeniu tych punktów zostanie zminimalizowana odleg³oœæ punktów od ramki powstaj¹cej za pomoc¹ funkcji f (minimalizacja sumy kwadratów odleg³oœci*1) i zostan¹ uzyskane argumenty funkcji daj¹ce ramkê danego obrazu rozproszeniowego. Argumenty te opisuj¹ po³o¿enie kropli zawieszonej w pu³apce oraz po³o¿enie matrycy CCD wzglêdem œrodka pu³apki.
+Wstêpna wersja projektu zak³ada³a rêczne zaznaczenie punktów na brzegu obrazu rozproszeniowego. 
+Po wprowadzeniu tych punktów zostanie zminimalizowana odleg³oœæ punktów od ramki powstaj¹cej za pomoc¹ funkcji 
+f (minimalizacja sumy kwadratów odleg³oœci) i zostan¹ uzyskane argumenty funkcji daj¹ce ramkê danego obrazu rozproszeniowego. 
+Argumenty te opisuj¹ po³o¿enie kropli zawieszonej w pu³apce oraz po³o¿enie matrycy CCD wzglêdem œrodka pu³apki.
 
 
 
 
+##Atomatyzacja znajdowania szukanych zmiennych
 
-*1) Do zbadania, czy tak bêdzie wystarczaj¹co dobrze.
+Wstêpnie znajdujê ramkê (szukane zmienne) przez maksymalizacjê puntów jasnych wewn¹trz ramki (aktualne parametry)
+i ciemnych na zewn¹trz ramki. Realizujê to za pomoc¹ fminsearch i funkcji celu BrightnesScalarization.
+W celu wybrania progu miêdzy wartoœciami ciemnymi i jasnymi za pomoc¹ wyszukiwania binarnego szukam takiej wartoœci
+progowej przy której zadana czêœæ punktów jest jasna (~30%). Realizuje to funkcja ThresholdValue.
+Wad¹ tego rozwi¹zania jest ignorowanie faktycznego po³o¿enia przez wybieranie progu na podstawie stosunku jasnych
+pixeli do ciemnych, co nie oddaje natury brzegu rozproszeniowego.
+
+W nastêpnym kroku automatyzacji zanjdowania szukanych zmiennych zamierzam w okolicy wczeœniej znalezionego brzegu szukaæ
+punktów, które z wiêksz¹ pewnoœci¹ bêd¹ brzegowe. Maj¹c punkty brzegowe wyko¿ystam wczeœniej napisan¹ funkcjê celu
+MeanSquaredDistance.
 
 ##Zale¿noœci i u¿yte toolboxy Matlaba
 license('inuse')
