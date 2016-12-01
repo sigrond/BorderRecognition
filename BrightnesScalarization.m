@@ -1,4 +1,4 @@
-function [ score ] = BrightnesScalarization( Frame, Args )
+function [ score ] = BrightnesScalarization( Frame,a1,a2, Args )
 %BrightnesScalarization funkcja skalaryzujaca jasnoœæ na zewn¹trz i
 %wewn¹trz
 %   Detailed explanation goes here
@@ -15,7 +15,7 @@ lCCD=Args(6);
 
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
 
-alpha=0.105;
+alpha=a1;%0.105;
 
 Bw1 = roipoly(Frame(:,:,1),X,Y);
 f=Frame(:,:,1)./max(max(Frame(:,:,1)));
@@ -32,7 +32,7 @@ FDr=fle.*Bw2;
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,b);
 %[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
 
-alpha2=0.017;
+alpha2=a2;%0.017;
 
 Bw1 = roipoly(Frame(:,:,1),X,Y);
 f=Frame(:,:,3)./max(max(Frame(:,:,3)));

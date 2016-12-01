@@ -36,8 +36,9 @@ delete(hf);
 
 hf = imtool( Frame./(max(max(max(Frame)))/20) );
 end
-hf = imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))>0.105)|(Frame(:,:,3)./max(max(Frame(:,:,3)))>0.017) );
-imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))<0.105)&(Frame(:,:,3)./max(max(Frame(:,:,3)))<0.017) );
+[a1 a2]=ThresholdValue(Frame);
+hf = imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))>a1)|(Frame(:,:,3)./max(max(Frame(:,:,3)))>a2) );
+%imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))<a1)&(Frame(:,:,3)./max(max(Frame(:,:,3)))<a2) );
 %imtool( (Frame(:,:,3)./max(max(Frame(:,:,3)))>0.09) );
 ha = get(hf,'CurrentAxes');
 hold(ha,'on');
@@ -131,7 +132,7 @@ elseif 0
 else
     t1=tic;
     options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
-    [Args, f,exitflag,output]=fminsearch(@(x)BrightnesScalarization(Frame,x),initial_point,options);
+    [Args, f,exitflag,output]=fminsearch(@(x)BrightnesScalarization(Frame,a1,a2,x),initial_point,options);
     Pk=[Args(1),Args(2),Args(3)];
     PCCD=[Args(4),Args(5),Args(6)];
     toc(t1)
