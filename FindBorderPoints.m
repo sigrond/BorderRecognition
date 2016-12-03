@@ -14,9 +14,10 @@ lCCD=Args(6);
 
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
 
-v=zeros(60);
+v=zeros(80,2);
+line=zeros(80);
 
-for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
+for i=2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=0;
     d=30;%odleg³oœæ od zadanego punktu do brzegu otoczenia
     a1=(Y(i-1)-Y(i+1))/(X(i-1)-X(i+1));%wpó³czynnik kierunkowy stycznej do ramki w punkcie
@@ -96,7 +97,8 @@ for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=j+1;
     v(j,1)=x;%+X(i);
     v(j,2)=y;%+Y(i);
-    line(j)=Frame(v(j,1),v(j,2),1);
+    %j
+    line(j)=Frame(v(j,2),v(j,1),1);
     % oœ wiod¹ca OX
     if dx>dy
         ai=(dy-dx)*2;
@@ -116,7 +118,7 @@ for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
             j=j+1;
             v(j,1)=x;%+X(i);
             v(j,2)=y;%+Y(i);
-            line(j)=Frame(v(j,1),v(j,2),1);
+            line(j)=Frame(v(j,2),v(j,1),1);
         end
     % oœ wiod¹ca OY
     else
@@ -137,10 +139,10 @@ for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
             j=j+1;
             v(j,1)=x;%+X(i);
             v(j,2)=y;%+Y(i);
-            line(j)=Frame(v(j,1),v(j,2),1);
+            line(j)=Frame(v(j,2),v(j,1),1);
         end
     end
-    %plot(line)
+    plot(line(1:j))
     %max(line)
     hf = imtool( Frame./(max(max(max(Frame)))/20) );
     ha = get(hf,'CurrentAxes');
@@ -149,7 +151,7 @@ for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     hs=scatter(ha,v(1:j,1),v(1:j,2),'filled','MarkerFaceColor','m');
     hs=scatter(ha,X(i),Y(i),'filled','MarkerFaceColor','b');
     hs=scatter(ha,x1,y1,'filled','MarkerFaceColor','r');
-    hs=scatter(ha,x2,y2,'filled','MarkerFaceColor','r');
+    hs=scatter(ha,x2,y2,'filled','MarkerFaceColor','c');
 end
 
 end
