@@ -2,6 +2,9 @@ function [ output_args ] = FindBorderPoints( Frame, Args )
 %FindBorderPoints znajdowanie brzegu obrazu rozproszeniowego zgodnie z
 %teori¹ na podstawie przybli¿onych parametrów ramki
 %   Detailed explanation goes here
+r=658;
+g=532;
+b=458;
 Px=Args(1);
 Py=Args(2);
 Pz=Args(3);
@@ -17,33 +20,34 @@ for i=2:4:28%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     a1=(Y(i-1)-Y(i+1))/(X(i-1)-X(i+1));%wpó³czynnik kierunkowy stycznej do ramki w punkcie
     a=tand(atand(a1)+90);%wsp kierunkowy prostej prostopad³ej do stycznej do ramki w punkcie
     b=Y(i)-a*X(i);%prosta na której szukamy wartoœci jest w postaci y=ax+b
+    b=b-Y(i);
     %do znalezienia pixeli na odcinku pos³u¿y algorytm Bresenhama
     delta=(2*a*b)^2-4*(1+a^2)*(b^2-d^2);
-    x1=(-(2*a*b)-(delta)^0.5)/(2*(1+a^2));
+    x1=(-(2*a*b)-(delta)^0.5)/(2*(1+a^2))+X(i);
     y1=a*x1+b;
-    x2=(-(2*a*b)+(delta)^0.5)/(2*(1+a^2));
+    x2=(-(2*a*b)+(delta)^0.5)/(2*(1+a^2))+X(i);
     y2=a*x2+b;
-    x1=round(x1);
-    y1=round(y1);
-    x2=round(x2);
-    y2=round(y2);
+    x1=int32(round(x1));
+    y1=int32(round(y1));
+    x2=int32(round(x2));
+    y2=int32(round(y2));
     x=x1;
     y=y1;
     % ustalenie kierunku rysowania
     if x1<x2
-        xi=1;
-        dx=x2-x1;
+        xi=int32(1);
+        dx=int32(x2-x1);
     else
-        xi=-1;
-        dx=x1-x2;
+        xi=int32(-1);
+        dx=int32(x1-x2);
     end
     % ustalenie kierunku rysowania
     if y1<y2
-        yi=1;
-        dy=y2-y1;
+        yi=int32(1);
+        dy=int32(y2-y1);
     else
-        yi=-1;
-        dy=y1-y2;
+        yi=int32(-1);
+        dy=int32(y1-y2);
     end
     % pierwszy piksel
     j=j+1;
