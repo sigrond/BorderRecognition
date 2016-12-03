@@ -48,7 +48,7 @@ FD=FDr&FDb;
 B=sum(sum(FB,2),1);
 D=sum(sum(FD,2),1);
 
-a=1;
+a=2;
 b=1;
 score=-(a*B+b*D);
 

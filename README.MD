@@ -23,9 +23,18 @@ progowej przy której zadana czêœæ punktów jest jasna (~30%). Realizuje to funkcj
 Wad¹ tego rozwi¹zania jest ignorowanie faktycznego po³o¿enia przez wybieranie progu na podstawie stosunku jasnych
 pixeli do ciemnych, co nie oddaje natury brzegu rozproszeniowego.
 
-W nastêpnym kroku automatyzacji zanjdowania szukanych zmiennych zamierzam w okolicy wczeœniej znalezionego brzegu szukaæ
+W nastêpnym kroku automatyzacji zanajdowania szukanych zmiennych zamierzam w okolicy wczeœniej znalezionego brzegu szukaæ
 punktów, które z wiêksz¹ pewnoœci¹ bêd¹ brzegowe. Maj¹c punkty brzegowe wyko¿ystam wczeœniej napisan¹ funkcjê celu
 MeanSquaredDistance.
+Brzeg jest wynikiem dyfrakcji fali kulistej (œwiat³a) z przes³on¹. Zatem brzeg (granica miêdzy œwiat³em, a cieniem)
+jest ukryty pod wzorem dyfrakcyjnym i wyznaczenie go wymaga znalezienia ostatniego minimum i maximum dyfrakcyjnego,
+a nastêpnie geometrycznego wyznaczenia granicy swiat³a i cienia.
+http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/difopa.html#c1
+Dane s¹ wybrane punkty ramki (indexy), wyznaczam prost¹ przechodz¹c¹ przez lewego i prawego s¹siada (styczna do ramki), 
+znajdujê prost¹ prostopad³¹ do stycznej przechodz¹c¹ przez zadany punkt. Na tej prostej w pewnym otoczeniu (~30px) 
+spodziewam siê znaleŸæ wzór dyfrakcyjny. W celu znalezienia pixeli na tej prostej zamierzam sko¿ystaæ z algorytmu 
+Bresenhama. Znajdê najwiêksze maximum i minimum (lewo i prwostronna pochodna zerowa, aby pomin¹æ wartoœæ na brzegu odcinka).
+Maximum dyfrakcyjne jest w geometrycznym œrodku miêdzy minimum dyfrakcyjnym, a szukan¹ granic¹ œwiat³a i cienia.
 
 ##Zale¿noœci i u¿yte toolboxy Matlaba
 license('inuse')
