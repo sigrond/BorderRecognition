@@ -402,7 +402,7 @@ g=532;
 b=458;
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
 hp=plot(ha,X,Y,'-xr');
-for i=1:10
+for i=1:15
     hs=scatter(ha,data(I(i)).v(1:j,1),data(I(i)).v(1:j,2),'filled','MarkerFaceColor',data(I(i)).color);
 end
 
