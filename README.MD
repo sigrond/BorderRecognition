@@ -26,7 +26,7 @@ pixeli do ciemnych, co nie oddaje natury brzegu rozproszeniowego.
 W nastêpnym kroku automatyzacji zanajdowania szukanych zmiennych zamierzam w okolicy wczeœniej znalezionego brzegu szukaæ
 punktów, które z wiêksz¹ pewnoœci¹ bêd¹ brzegowe. Maj¹c punkty brzegowe wyko¿ystam wczeœniej napisan¹ funkcjê celu
 MeanSquaredDistance.
-Brzeg jest wynikiem dyfrakcji fali kulistej (œwiat³a) z przes³on¹. Zatem brzeg (granica miêdzy œwiat³em, a cieniem)
+Brzeg jest wynikiem dyfrakcji fali p³askiej (œwiat³a) z przes³on¹. Zatem brzeg (granica miêdzy œwiat³em, a cieniem)
 jest ukryty pod wzorem dyfrakcyjnym i wyznaczenie go wymaga znalezienia ostatniego minimum i maximum dyfrakcyjnego,
 a nastêpnie geometrycznego wyznaczenia granicy swiat³a i cienia.
 http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/difopa.html#c1
