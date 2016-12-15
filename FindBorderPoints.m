@@ -1,4 +1,4 @@
-function [ output_args ] = FindBorderPoints( Frame, Args )
+function [ pointsr, pointsb ] = FindBorderPoints( Frame, Args )
 %FindBorderPoints znajdowanie brzegu obrazu rozproszeniowego zgodnie z
 %teori¹ na podstawie przybli¿onych parametrów ramki
 %   Detailed explanation goes here
@@ -402,10 +402,21 @@ g=532;
 b=458;
 [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
 hp=plot(ha,X,Y,'-xr');
+ib=0;
+ir=0;
 for i=1:15
-    hs=scatter(ha,data(I(i)).v(1:j,1),data(I(i)).v(1:j,2),'filled','MarkerFaceColor',data(I(i)).color);
-    point=FindShadowAndLightBorder(data(I(i)).line)
+    hs=scatter(ha,data(I(i)).v(1:data(I(i)).j,1),data(I(i)).v(1:data(I(i)).j,2),'filled','MarkerFaceColor',data(I(i)).color);
+    point=FindShadowAndLightBorder(data(I(i)).line(1:data(I(i)).j));
     hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');
+    if data(I(i)).color=='r'
+        ir=ir+1;
+        pointsr(ir,1)=data(I(i)).v(point,1);
+        pointsr(ir,2)=data(I(i)).v(point,2);
+    else
+        ib=ib+1;
+        pointsb(ib,1)=data(I(i)).v(point,1);
+        pointsb(ib,2)=data(I(i)).v(point,2);
+    end
 end
 
 end

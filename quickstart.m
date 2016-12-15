@@ -4,4 +4,3 @@ try
 catch
     [ Pk, PCCD ]=BorderRecognition(temp)
 end
-FindBorderPoints(temp, [Pk,PCCD])

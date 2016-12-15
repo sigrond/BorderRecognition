@@ -149,6 +149,22 @@ output
 
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
+[pointsr, pointsb]=FindBorderPoints(Frame, [Pk,PCCD]);
+
+t1=tic;
+options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on','MaxFunEvals',1200,'HessUpdate','bfgs','TolFun',1e-9,'TolX',1e-9,'TypicalX',[1e-1,1,1,1,1,1e-1]);
+[Args, f,exitflag,output]=fminunc(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
+Pk=[Args(1),Args(2),Args(3)];
+PCCD=[Args(4),Args(5),Args(6)];
+toc(t1)
+
+t1=tic;
+options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
+[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
+Pk=[Args(1),Args(2),Args(3)];
+PCCD=[Args(4),Args(5),Args(6)];
+toc(t1)
+
 toc(t0)
 end
 

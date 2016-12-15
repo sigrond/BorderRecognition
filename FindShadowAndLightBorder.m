@@ -30,6 +30,7 @@ plot(extremum(1:k,3),extremum(1:k,1),'LineStyle','none','Marker','x','MarkerEdge
 maxDifference=0;
 minDiffInd=0;
 maxDiffInd=0;
+firstDifMin=0;
 for i=2:k
     difference=abs(extremum(i-1,1)-extremum(i,1));
     if difference>maxDifference
@@ -37,9 +38,11 @@ for i=2:k
         if extremum(i,2)==1
             maxDiffInd=extremum(i,3);
             minDiffInd=extremum(i-1,3);
+            firstDifMin=i+1;
         else
             maxDiffInd=extremum(i-1,3);
             minDiffInd=extremum(i,3);
+            firstDifMin=i-2;
         end
     end
 end
@@ -51,10 +54,11 @@ end
 plot(maxDiffInd,line(maxDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','m');
 plot(minDiffInd,line(minDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','c');
 
-firstDifMin
+%firstDifMin
 %maxDiffInd+(maxDiffInd-minDiffInd);
 
-point=2*maxDiffInd-minDiffInd;
+%point=2*maxDiffInd-minDiffInd;
+point=2*maxDiffInd-extremum(firstDifMin,3);
 plot(point,line(point),'LineStyle','none','Marker','+','MarkerEdgeColor','b');
 
 end
