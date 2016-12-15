@@ -405,7 +405,7 @@ hp=plot(ha,X,Y,'-xr');
 for i=1:15
     hs=scatter(ha,data(I(i)).v(1:j,1),data(I(i)).v(1:j,2),'filled','MarkerFaceColor',data(I(i)).color);
     point=FindShadowAndLightBorder(data(I(i)).line)
-    hs=scatter(ha,data(I(i)).X(point),data(I(i)).Y(point),'filled','MarkerFaceColor','c');
+    hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');
 end
 
 end

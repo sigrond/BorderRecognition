@@ -6,7 +6,7 @@ function [ point ] = FindShadowAndLightBorder( line )
 %znajdowanie extremów
 k=0;
 extremum=zeros(80,3);
-for i=2:length(dl)-1
+for i=2:length(line)-1
     if line(i-1)>line(i) && line(i+1)>line(i) %minimum
         k=k+1;
         extremum(k,1)=line(i);
@@ -19,6 +19,12 @@ for i=2:length(dl)-1
         extremum(k,3)=i;
     end
 end
+
+figure
+pl=plot(line(:));
+hold on;
+plot(extremum(1:k,3),extremum(1:k,1),'LineStyle','none','Marker','x','MarkerEdgeColor','r');
+
 
 %znajdowanie najwy¿szej "amplitudy"
 maxDifference=0;
@@ -42,7 +48,14 @@ end
 %2*P=a+b
 %2*P-b=a
 
+plot(maxDiffInd,line(maxDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','m');
+plot(minDiffInd,line(minDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','c');
+
+firstDifMin
+%maxDiffInd+(maxDiffInd-minDiffInd);
+
 point=2*maxDiffInd-minDiffInd;
+plot(point,line(point),'LineStyle','none','Marker','+','MarkerEdgeColor','b');
 
 end
 
