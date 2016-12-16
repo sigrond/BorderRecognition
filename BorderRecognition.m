@@ -151,6 +151,17 @@ Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
 [pointsr, pointsb]=FindBorderPoints(Frame, [Pk,PCCD]);
 
+hf = imtool( Frame./(max(max(max(Frame)))/20) );
+%hf = imtool( Frame(:,:,1), [ min(min(Frame(:,:,1))) max(max(Frame(:,:,1))) ]);
+ha = get(hf,'CurrentAxes');
+hold(ha,'on');
+hs=scatter(ha,pointsr(:,1),pointsr(:,2),'filled','MarkerFaceColor','m');
+hs=scatter(ha,pointsb(:,1),pointsb(:,2),'filled','MarkerFaceColor','c');
+[X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
+hp=plot(ha,X,Y,'-xr');
+[X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),b);
+hpb=plot(ha,X,Y,'-xb');
+
 t1=tic;
 options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on','MaxFunEvals',1200,'HessUpdate','bfgs','TolFun',1e-9,'TolX',1e-9,'TypicalX',[1e-1,1,1,1,1,1e-1]);
 [Args, f,exitflag,output]=fminunc(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);

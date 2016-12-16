@@ -20,10 +20,10 @@ for i=2:length(line)-1
     end
 end
 
-figure
-pl=plot(line(:));
-hold on;
-plot(extremum(1:k,3),extremum(1:k,1),'LineStyle','none','Marker','x','MarkerEdgeColor','r');
+%figure
+%pl=plot(line(:));
+%hold on;
+%plot(extremum(1:k,3),extremum(1:k,1),'LineStyle','none','Marker','x','MarkerEdgeColor','r');
 
 
 %znajdowanie najwy¿szej "amplitudy"
@@ -51,15 +51,15 @@ end
 %2*P=a+b
 %2*P-b=a
 
-plot(maxDiffInd,line(maxDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','m');
-plot(minDiffInd,line(minDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','c');
+%plot(maxDiffInd,line(maxDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','m');
+%plot(minDiffInd,line(minDiffInd),'LineStyle','none','Marker','o','MarkerEdgeColor','c');
 
 %firstDifMin
 %maxDiffInd+(maxDiffInd-minDiffInd);
 
 %point=2*maxDiffInd-minDiffInd;
 point=2*maxDiffInd-extremum(firstDifMin,3);
-plot(point,line(point),'LineStyle','none','Marker','+','MarkerEdgeColor','b');
+%plot(point,line(point),'LineStyle','none','Marker','+','MarkerEdgeColor','b');
 
 end
 

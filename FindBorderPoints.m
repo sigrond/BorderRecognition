@@ -19,7 +19,9 @@ k=0;
 v=zeros(80,2);
 line=zeros(80,1);
 
-for i=2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
+selectedPoints=[3:2:10 11:6:40 41:50 51:6:80];
+
+for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=0;
     d=30;%odleg³oœæ od zadanego punktu do brzegu otoczenia
     a1=(Y(i-1)-Y(i+1))/(X(i-1)-X(i+1));%wpó³czynnik kierunkowy stycznej do ramki w punkcie
@@ -181,10 +183,10 @@ for i=2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
         end
     end
     if exist('pl','var')
-        plot(line(1:j));
+        %plot(line(1:j));
     else
-        pl=plot(line(1:j));
-        hold on;
+        %pl=plot(line(1:j));
+        %hold on;
     end
     %max(line)
     %hf = imtool( Frame./(max(max(max(Frame)))/20) );
@@ -210,7 +212,7 @@ b=458;
 v=zeros(80,2);
 line=zeros(80,1);
 
-for i=2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
+for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=0;
     d=30;%odleg³oœæ od zadanego punktu do brzegu otoczenia
     a1=(Y(i-1)-Y(i+1))/(X(i-1)-X(i+1));%wpó³czynnik kierunkowy stycznej do ramki w punkcie
@@ -371,7 +373,7 @@ for i=2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
             line(j)=Frame(v(j,2),v(j,1),3);
         end
     end
-    plot(line(1:j))
+    %plot(line(1:j))
     %max(line)
     %hf = imtool( Frame./(max(max(max(Frame)))/20) );
     %ha = get(hf,'CurrentAxes');
@@ -404,7 +406,7 @@ b=458;
 hp=plot(ha,X,Y,'-xr');
 ib=0;
 ir=0;
-for i=1:15
+for i=1:12
     hs=scatter(ha,data(I(i)).v(1:data(I(i)).j,1),data(I(i)).v(1:data(I(i)).j,2),'filled','MarkerFaceColor',data(I(i)).color);
     point=FindShadowAndLightBorder(data(I(i)).line(1:data(I(i)).j));
     hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');
