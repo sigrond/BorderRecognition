@@ -49,6 +49,7 @@ hs=scatter(ha,positionb(:,1),positionb(:,2),'filled','MarkerFaceColor','c');
 end
 
 t0=tic;
+t1=0;
 
 %Position=position;
 
@@ -75,6 +76,9 @@ set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))
 drawnow
 %display(Br+Bb+Dr+Db);
 if(toc(t0)>200)
+    stop=true;
+end
+if(toc(t1)>90)
     stop=true;
 end
 end
