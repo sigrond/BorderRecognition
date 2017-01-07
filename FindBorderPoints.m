@@ -19,7 +19,7 @@ k=0;
 v=zeros(80,2);
 line=zeros(80,1);
 
-selectedPoints=[3:2:10 11:6:40 41:50 51:6:80];
+selectedPoints=[3:2:10 11:4:40 41:2:50 51:4:80];
 
 for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=0;
@@ -200,7 +200,7 @@ for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których s
     quality=max(line(1:j))-min(line(1:j));
     k=k+1;
     c='r';
-    data(k)=struct('v',v,'j',j,'X',X,'Y',Y,'line',line,'quality',quality,'color',c);
+    data(k)=struct('v',v,'j',j,'X',X,'Y',Y,'line',line,'quality',quality,'color',c,'inColorIndex',i);
     %waitfor(hf);
 end
 
@@ -386,7 +386,7 @@ for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których s
     quality=max(line(1:j))-min(line(1:j));
     k=k+1;
     c='b';
-    data(k)=struct('v',v,'j',j,'X',X,'Y',Y,'line',line,'quality',quality,'color',c);
+    data(k)=struct('v',v,'j',j,'X',X,'Y',Y,'line',line,'quality',quality,'color',c,'inColorIndex',i);
     %waitfor(hf);
 end
 
@@ -406,18 +406,30 @@ b=458;
 hp=plot(ha,X,Y,'-xr');
 ib=0;
 ir=0;
-for i=1:12
+for i=1:25
     hs=scatter(ha,data(I(i)).v(1:data(I(i)).j,1),data(I(i)).v(1:data(I(i)).j,2),'filled','MarkerFaceColor',data(I(i)).color);
     point=FindShadowAndLightBorder(data(I(i)).line(1:data(I(i)).j));
     hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');
+    
+    x = data(I(i)).v(point,1); y = data(I(i)).v(point,2);% scatter(x,y);
+    %a = selectedPoints(I(i)); b = num2str(a); c = cellstr(b);
+    a = data(I(i)).inColorIndex; b = num2str(a); c = cellstr(b);
+    dx = 1.1; dy = 0.1; % displacement so the text does not overlay the data points
+
+    %text(x+dx, y+dy, c,'fontsize',18,'color',[0,1,0], 'Parent', ha);
+    
     if data(I(i)).color=='r'
         ir=ir+1;
         pointsr(ir,1)=data(I(i)).v(point,1);
         pointsr(ir,2)=data(I(i)).v(point,2);
+
+        text(x+dx, y+dy, c,'fontsize',18,'color',[1,1,0], 'Parent', ha);
     else
         ib=ib+1;
         pointsb(ib,1)=data(I(i)).v(point,1);
         pointsb(ib,2)=data(I(i)).v(point,2);
+        
+        text(x+dx, y+dy, c,'fontsize',18,'color',[0,1,1], 'Parent', ha);
     end
 end
 
