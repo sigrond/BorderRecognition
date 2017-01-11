@@ -1,42 +1,42 @@
 #BorderRecognition
 
-###Projekt maj¹cy na celu znajdowaæ "ramkê" obrazu rozproszeniowego Mie'go.
+###Projekt majÄ…cy na celu znajdowaÄ‡ "ramkÄ™" obrazu rozproszeniowego Mie'go.
 
-"Ramka" jest rysowana funkcj¹ BorderCreation
+"Ramka" jest rysowana funkcjÄ… BorderCreation
 f(PkX,PkY,PkZ,CCDX,CCDY,CCDZ): R^6 -> R^2^n
-funkcja ta nie jest znan¹ funkcj¹ analityczn¹ i ko¿ysta z ray tracingu
+funkcja ta nie jest znanÄ… funkcjÄ… analitycznÄ… i koÅ¼ysta z ray tracingu
 
-Wstêpna wersja projektu zak³ada³a rêczne zaznaczenie punktów na brzegu obrazu rozproszeniowego. 
-Po wprowadzeniu tych punktów zostanie zminimalizowana odleg³oœæ punktów od ramki powstaj¹cej za pomoc¹ funkcji 
-f (minimalizacja sumy kwadratów odleg³oœci) i zostan¹ uzyskane argumenty funkcji daj¹ce ramkê danego obrazu rozproszeniowego. 
-Argumenty te opisuj¹ po³o¿enie kropli zawieszonej w pu³apce oraz po³o¿enie matrycy CCD wzglêdem œrodka pu³apki.
+WstÄ™pna wersja projektu zakÅ‚adaÅ‚a rÄ™czne zaznaczenie punktÃ³w na brzegu obrazu rozproszeniowego. 
+Po wprowadzeniu tych punktÃ³w zostanie zminimalizowana odlegÅ‚oÅ›Ä‡ punktÃ³w od ramki powstajÄ…cej za pomocÄ… funkcji 
+f (minimalizacja sumy kwadratÃ³w odlegÅ‚oÅ›ci) i zostanÄ… uzyskane argumenty funkcji dajÄ…ce ramkÄ™ danego obrazu rozproszeniowego. 
+Argumenty te opisujÄ… poÅ‚oÅ¼enie kropli zawieszonej w puÅ‚apce oraz poÅ‚oÅ¼enie matrycy CCD wzglÄ™dem Å›rodka puÅ‚apki.
 
 
 
 
 ##Atomatyzacja znajdowania szukanych zmiennych
 
-Wstêpnie znajdujê ramkê (szukane zmienne) przez maksymalizacjê puntów jasnych wewn¹trz ramki (aktualne parametry)
-i ciemnych na zewn¹trz ramki. Realizujê to za pomoc¹ fminsearch i funkcji celu BrightnesScalarization.
-W celu wybrania progu miêdzy wartoœciami ciemnymi i jasnymi za pomoc¹ wyszukiwania binarnego szukam takiej wartoœci
-progowej przy której zadana czêœæ punktów jest jasna (~30%). Realizuje to funkcja ThresholdValue.
-Wad¹ tego rozwi¹zania jest ignorowanie faktycznego po³o¿enia przez wybieranie progu na podstawie stosunku jasnych
+WstÄ™pnie znajdujÄ™ ramkÄ™ (szukane zmienne) przez maksymalizacjÄ™ puntÃ³w jasnych wewnÄ…trz ramki (aktualne parametry)
+i ciemnych na zewnÄ…trz ramki. RealizujÄ™ to za pomocÄ… fminsearch i funkcji celu BrightnesScalarization.
+W celu wybrania progu miÄ™dzy wartoÅ›ciami ciemnymi i jasnymi za pomocÄ… wyszukiwania binarnego szukam takiej wartoÅ›ci
+progowej przy ktÃ³rej zadana czÄ™Å›Ä‡ punktÃ³w jest jasna (~30%). Realizuje to funkcja ThresholdValue.
+WadÄ… tego rozwiÄ…zania jest ignorowanie faktycznego poÅ‚oÅ¼enia przez wybieranie progu na podstawie stosunku jasnych
 pixeli do ciemnych, co nie oddaje natury brzegu rozproszeniowego.
 
-W nastêpnym kroku automatyzacji zanajdowania szukanych zmiennych zamierzam w okolicy wczeœniej znalezionego brzegu szukaæ
-punktów, które z wiêksz¹ pewnoœci¹ bêd¹ brzegowe. Maj¹c punkty brzegowe wyko¿ystam wczeœniej napisan¹ funkcjê celu
+W nastÄ™pnym kroku automatyzacji zanajdowania szukanych zmiennych zamierzam w okolicy wczeÅ›niej znalezionego brzegu szukaÄ‡
+punktÃ³w, ktÃ³re z wiÄ™kszÄ… pewnoÅ›ciÄ… bÄ™dÄ… brzegowe. MajÄ…c punkty brzegowe wykoÅ¼ystam wczeÅ›niej napisanÄ… funkcjÄ™ celu
 MeanSquaredDistance.
-Brzeg jest wynikiem dyfrakcji fali p³askiej (œwiat³a) z przes³on¹. Zatem brzeg (granica miêdzy œwiat³em, a cieniem)
+Brzeg jest wynikiem dyfrakcji fali pÅ‚askiej (Å›wiatÅ‚a) z przesÅ‚onÄ…. Zatem brzeg (granica miÄ™dzy Å›wiatÅ‚em, a cieniem)
 jest ukryty pod wzorem dyfrakcyjnym i wyznaczenie go wymaga znalezienia ostatniego minimum i maximum dyfrakcyjnego,
-a nastêpnie geometrycznego wyznaczenia granicy swiat³a i cienia.
+a nastÄ™pnie geometrycznego wyznaczenia granicy swiatÅ‚a i cienia.
 http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/difopa.html#c1
-Dane s¹ wybrane punkty ramki (indexy), wyznaczam prost¹ przechodz¹c¹ przez lewego i prawego s¹siada (styczna do ramki), 
-znajdujê prost¹ prostopad³¹ do stycznej przechodz¹c¹ przez zadany punkt. Na tej prostej w pewnym otoczeniu (~30px) 
-spodziewam siê znaleŸæ wzór dyfrakcyjny. W celu znalezienia pixeli na tej prostej zamierzam sko¿ystaæ z algorytmu 
-Bresenhama. Znajdê najwiêksze maximum i minimum (lewo i prwostronna pochodna zerowa, aby pomin¹æ wartoœæ na brzegu odcinka).
-Maximum dyfrakcyjne jest w geometrycznym œrodku miêdzy minimum dyfrakcyjnym, a szukan¹ granic¹ œwiat³a i cienia.
+Dane sÄ… wybrane punkty ramki (indexy), wyznaczam prostÄ… przechodzÄ…cÄ… przez lewego i prawego sÄ…siada (styczna do ramki), 
+znajdujÄ™ prostÄ… prostopadÅ‚Ä… do stycznej przechodzÄ…cÄ… przez zadany punkt. Na tej prostej w pewnym otoczeniu (~30px) 
+spodziewam siÄ™ znaleÅºÄ‡ wzÃ³r dyfrakcyjny. W celu znalezienia pixeli na tej prostej zamierzam skoÅ¼ystaÄ‡ z algorytmu 
+Bresenhama. ZnajdÄ™ najwiÄ™ksze maximum i minimum (lewo i prwostronna pochodna zerowa, aby pominÄ…Ä‡ wartoÅ›Ä‡ na brzegu odcinka).
+Maximum dyfrakcyjne jest w geometrycznym Å›rodku miÄ™dzy minimum dyfrakcyjnym, a szukanÄ… granicÄ… Å›wiatÅ‚a i cienia.
 
-##Zale¿noœci i u¿yte toolboxy Matlaba
+##ZaleÅ¼noÅ›ci i uÅ¼yte toolboxy Matlaba
 license('inuse')
 image_toolbox
 matlab
@@ -47,15 +47,15 @@ f =
 
   Columns 1 through 3
 
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+    'D:\Moje dokumentyâ€¦'     'D:\Moje dokumentyâ€¦'     'D:\Moje dokumentyâ€¦' 
 
   Columns 4 through 6
 
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+    'D:\Moje dokumentyâ€¦'     'D:\Moje dokumentyâ€¦'     'D:\Moje dokumentyâ€¦' 
 
   Columns 7 through 8
 
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
+    'D:\Moje dokumentyâ€¦'     'D:\Moje dokumentyâ€¦' 
 
 
 p = 
@@ -73,19 +73,23 @@ p =
 
 
 
-##Wywo³anie demonstracji w Matlabie
+##WywoÅ‚anie demonstracji w Matlabie
 ```Matlab
-%za³adowaæ klatkê z filmu
+%zaÅ‚adowaÄ‡ klatkÄ™ z filmu
 load('Frame.mat');
-%wywo³aæ funkcje z argumentami
+%wywoÅ‚aÄ‡ funkcje z argumentami
 [ Pk, PCCD ]=BorderRecognition(Frame)
 
-%nastêpnie w wyœwietlonym okienku zaznaczyæ punkty na brzegu
-%obrazu rozproszeniowego (zakoñczenie zaznaczanie przez
-%zamkniêcie wielok¹tu podwójnym klikniêciem).
-%w trakcie wykonania mo¿na obserwowaæ postêpy algorytmu, w
-%okienku z klatk¹ wyœwietlane s¹ wybrane punkty oraz ramka na
+%nastÄ™pnie w wyÅ›wietlonym okienku zaznaczyÄ‡ punkty na brzegu
+%obrazu rozproszeniowego (zakoÅ„czenie zaznaczanie przez
+%zamkniÄ™cie wielokÄ…tu podwÃ³jnym klikniÄ™ciem).
+%w trakcie wykonania moÅ¼na obserwowaÄ‡ postÄ™py algorytmu, w
+%okienku z klatkÄ… wyÅ›wietlane sÄ… wybrane punkty oraz ramka na
 %obecnym etapie optymalizacji.
-%po zakoñczeniu minimalizacji zostanie wyœwietlona ostatecza
-% wersja ramki, a jej parametry s¹ zwracane w Pk i PCCD.
+%po zakoÅ„czeniu minimalizacji zostanie wyÅ›wietlona ostatecza
+% wersja ramki, a jej parametry sÄ… zwracane w Pk i PCCD.
 ```
+
+##Do zrobienia:
+- [ ] Mapy WartoÅ›ci i gradientÃ³w
+- [ ] Wyniki z profilera
