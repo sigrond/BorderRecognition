@@ -94,3 +94,4 @@ load('Frame.mat');
 - [ ] Mapy Wartości i gradientów
 - [ ] Wyniki z profilera
 - [ ] Kolory na obrazie jasnych punktów dla kanałów
+- [ ] Liczniki czasu na paskach okienek
