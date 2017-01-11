@@ -93,3 +93,4 @@ load('Frame.mat');
 ##Do zrobienia:
 - [ ] Mapy Wartości i gradientów
 - [ ] Wyniki z profilera
+- [ ] Kolory na obrazie jasnych punktów dla kanałów
