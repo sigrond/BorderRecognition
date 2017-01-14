@@ -37,7 +37,12 @@ delete(hf);
 hf = imtool( Frame./(max(max(max(Frame)))/20) );
 end
 [a1 a2]=ThresholdValue(Frame);
-hf = imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))>a1)|(Frame(:,:,3)./max(max(Frame(:,:,3)))>a2) );
+%hf = imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))>a1)|(Frame(:,:,3)./max(max(Frame(:,:,3)))>a2) );
+tmpF=Frame;
+tmpF(:,:,1)=(Frame(:,:,1)./max(max(Frame(:,:,1)))>a1).*0.5;
+tmpF(:,:,2)=zeros(size(Frame(:,:,2)));
+tmpF(:,:,3)=(Frame(:,:,3)./max(max(Frame(:,:,3)))>a2).*0.5;
+hf = imtool( tmpF );
 %imtool( (Frame(:,:,1)./max(max(Frame(:,:,1)))<a1)&(Frame(:,:,3)./max(max(Frame(:,:,3)))<a2) );
 %imtool( (Frame(:,:,3)./max(max(Frame(:,:,3)))>0.09) );
 ha = get(hf,'CurrentAxes');
