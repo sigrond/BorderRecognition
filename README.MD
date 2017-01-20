@@ -44,20 +44,7 @@ matlab
 [f,p]=matlab.codetools.requiredFilesAndProducts('BorderRecognition.m')
 
 f = 
-
-  Columns 1 through 3
-
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
-
-  Columns 4 through 6
-
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
-
-  Columns 7 through 8
-
-    'D:\Moje dokumenty…'     'D:\Moje dokumenty…' 
-
-
+…
 p = 
 
 1x2 struct array with fields:
@@ -74,24 +61,29 @@ p =
 
 
 ##Wywołanie demonstracji w Matlabie
+Demonstarcja z odpowiednimi parametrami wywoływana jest poleceniem:
 ```Matlab
-%załadować klatkę z filmu
-load('Frame.mat');
-%wywołać funkcje z argumentami
-[ Pk, PCCD ]=BorderRecognition(Frame)
+quickstart
+```
 
-%następnie w wyświetlonym okienku zaznaczyć punkty na brzegu
-%obrazu rozproszeniowego (zakończenie zaznaczanie przez
-%zamknięcie wielokątu podwójnym kliknięciem).
-%w trakcie wykonania można obserwować postępy algorytmu, w
-%okienku z klatką wyświetlane są wybrane punkty oraz ramka na
-%obecnym etapie optymalizacji.
-%po zakończeniu minimalizacji zostanie wyświetlona ostatecza
-% wersja ramki, a jej parametry są zwracane w Pk i PCCD.
+##Wyniki profilera
+Wybrane wyniki profilera:
+```
+Function Name	Calls	Total Time	Self Time
+BorderRecognition	1211.103 s	0.613 s
+BorderFunction	8360194.031 s	5.456 s
+RayTracing	668800180.999 s	59.482 s
+fminsearch	2105.494 s	0.208 s
+fminunc	195.173 s	0.312 s
+RayTracing>findAlpha	265720269.847 s	40.848 s
+dot	665972557.473 s	57.473 s
+RayTracing>SphereCross	132860127.832 s	17.548 s
+BrightnesScalarization	29318.091 s	2.166 s
+cross	26572025.826 s	5.826 s
 ```
 
 ##Do zrobienia:
 - [ ] Mapy Wartości i gradientów
-- [ ] Wyniki z profilera
-- [ ] Kolory na obrazie jasnych punktów dla kanałów
+- [x] Wyniki z profilera
+- [x] Kolory na obrazie jasnych punktów dla kanałów
 - [ ] Liczniki czasu na paskach okienek
