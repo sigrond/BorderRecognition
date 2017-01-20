@@ -70,20 +70,20 @@ quickstart
 Wybrane wyniki profilera:
 ```
 Function Name	Calls	Total Time	Self Time
-BorderRecognition	1211.103 s	0.613 s
-BorderFunction	8360194.031 s	5.456 s
-RayTracing	668800180.999 s	59.482 s
-fminsearch	2105.494 s	0.208 s
-fminunc	195.173 s	0.312 s
-RayTracing>findAlpha	265720269.847 s	40.848 s
-dot	665972557.473 s	57.473 s
-RayTracing>SphereCross	132860127.832 s	17.548 s
-BrightnesScalarization	29318.091 s	2.166 s
-cross	26572025.826 s	5.826 s
+BorderRecognition	1	211.103 s	0.613 s
+BorderFunction	8360	194.031 s	5.456 s
+RayTracing	668800	180.999 s	59.482 s
+fminsearch	2	105.494 s	0.208 s
+fminunc	1	95.173 s	0.312 s
+RayTracing>findAlpha	2657202	69.847 s	40.848 s
+dot	6659725	57.473 s	57.473 s
+RayTracing>SphereCross	1328601	27.832 s	17.548 s
+BrightnesScalarization	293	18.091 s	2.166 s
+cross	2657202	5.826 s	5.826 s
 ```
 
 ##Do zrobienia:
-- [ ] Mapy Wartości i gradientów
+- [ ] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci
 - [x] Wyniki z profilera
 - [x] Kolory na obrazie jasnych punktów dla kanałów
 - [ ] Liczniki czasu na paskach okienek
