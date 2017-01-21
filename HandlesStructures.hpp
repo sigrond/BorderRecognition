@@ -1,5 +1,6 @@
 #pragma once
 //#include <vector_types.h>
+#include "float3.hpp"
 /** \brief Structure with handles data used by raytracing.
  * Structure should be filled with data from matlab on initialization.
  */
@@ -22,11 +23,11 @@ typedef struct HandlesStructures
     float CCDH;// = CCDPH * PixSize;/**< height of CCD */
     float CCDW;// = CCDPW * PixSize;/**< width  of CCD */
     //Droplet position
-    //float3 Pk;//=(float3){0.0f,0.0f,0.0f};/**< Position of droplet relativ to the origin of coordinat system */
-	struct Pk
+    float3 Pk;//=(float3){0.0f,0.0f,0.0f};/**< Position of droplet relativ to the origin of coordinat system */
+	/*struct Pk
 	{
 		float x,y,z;
-	} Pk;
+	} Pk;*/
 	
     float Cs1;//=0.0f;
     float Cs2;//=0.0f;
