@@ -1,6 +1,7 @@
 #BorderRecognition
 
 ###Projekt mający na celu znajdować "ramkę" obrazu rozproszeniowego Mie'go.
+Projekt jest częścią pracowni dyplmowej inżynierskiej.
 
 "Ramka" jest rysowana funkcją BorderCreation
 f(PkX,PkY,PkZ,CCDX,CCDY,CCDZ): R^6 -> R^2^n
