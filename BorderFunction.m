@@ -102,8 +102,12 @@ handles.Br=Br;
 for i = 1:size(handles.Br,1)
        Pd = [ handles.Br(i,1), handles.Br(i,2), handles.Br(i,3) ]; % Points on the diaphragm plane 
        %P = RayTracing(Pd,handles.S);
-       Ppom=RayTracing_MEX(Pd,handles);
-       P=double(Ppom');
+       if exist('RayTracing_MEX', 'file') == 3
+           Ppom=RayTracing_MEX(Pd,handles);
+           P=double(Ppom');
+       else
+           P = RayTracing(Pd,handles.S);
+       end
        %if P~=Ppom'
        %    display(P);
        %end
