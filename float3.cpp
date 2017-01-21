@@ -1,12 +1,9 @@
-#include "float3.hpp"
+﻿#include "float3.hpp"
 #include <cmath>
 
-inline float dot(float3 a, float3 b)
-{
-	return a.x*b.x+a.y*b.y+a.z*b.z;
-}
 
-inline float3 cross(float3 a, float3 b)
+
+float3 cross(const struct float3 &a, const struct float3 &b)
 {
 	float3 v;
 	v.x=a.y*b.z-b.y*a.z;
@@ -55,6 +52,15 @@ inline float3 operator /(const float3 &a, const float &b)
 	v.z=this->z-b.z;
 	return v;
 }*/
+
+float3 operator *(const float &a, const float3 &b)
+{
+	float3 v;
+	v.x=a*b.x;
+	v.y=a*b.y;
+	v.z=a*b.z;
+	return v;
+}
 
 
 
