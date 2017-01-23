@@ -19,7 +19,10 @@ for i=1:length(PositionR(:,1))
     [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,r);
     tmp=(BorderDistance(X,Y,PositionR(i,1),PositionR(i,2)))^2;
     if(tmp==NaN || tmp==Inf || isnan(tmp) || isinf(tmp))
+<<<<<<< HEAD
         tmp=1;
+=======
+>>>>>>> 4cdaafc2aad7c5117a430709189eb2e6a0de4385
         notused=notused-1;
     end
     distance=distance+tmp;
@@ -29,7 +32,10 @@ for i=1:length(PositionB(:,1))
     [X Y]=BorderFunction(Px,Py,Pz,ShX,ShY,lCCD,b);
     tmp=(BorderDistance(X,Y,PositionB(i,1),PositionB(i,2)))^2;
     if(tmp==NaN || tmp==Inf || isnan(tmp) || isinf(tmp))
+<<<<<<< HEAD
         tmp=1;
+=======
+>>>>>>> 4cdaafc2aad7c5117a430709189eb2e6a0de4385
         notused=notused-1;
     end
     distance=distance+tmp;

@@ -212,7 +212,10 @@ t1=tic;
     options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
     [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
 else
+<<<<<<< HEAD
     [Args, f,exitflag,output]=ga(@(x)MeanSquaredDistance(pointsr,pointsb,x),6,[1,0,0,0,0,0;0,1,0,0,0,0;0,0,1,0,0,0;0,0,0,1,0,0;0,0,0,0,1,0;0,0,0,0,0,1],[1,1,1,1.5,1.5,Args(6)+3],[],[],[-1,-1,-1,-1.5,-1.5,Args(6)-3],[1,1,1,1.5,1.5,Args(6)+3],[],gaoptimset('Display','iter','OutputFcn',@mygaoutputfcn));
+=======
+>>>>>>> 4cdaafc2aad7c5117a430709189eb2e6a0de4385
 end
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
