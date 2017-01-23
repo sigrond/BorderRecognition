@@ -19,7 +19,7 @@ k=0;
 v=zeros(80,2);
 line=zeros(80,1);
 
-selectedPoints=[3:2:10 11:4:40 41:2:50 51:4:80];
+selectedPoints=[3:2:10 15:8:40 41:2:50 51:8:80];
 
 for i=selectedPoints%2:4:80%wybrane indeksy punktów na ramce w pobli¿u których szukamy brzegu
     j=0;
@@ -406,7 +406,7 @@ b=458;
 hp=plot(ha,X,Y,'-xr');
 ib=0;
 ir=0;
-for i=1:25
+for i=1:12
     hs=scatter(ha,data(I(i)).v(1:data(I(i)).j,1),data(I(i)).v(1:data(I(i)).j,2),'filled','MarkerFaceColor',data(I(i)).color);
     point=FindShadowAndLightBorder(data(I(i)).line(1:data(I(i)).j));
     hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');

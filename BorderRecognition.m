@@ -88,6 +88,34 @@ if(toc(t1)>90)
 end
 end
 
+function [state, options,optchanged] = mygaoutputfcn(options,state,flag)
+optchanged = false;
+
+switch flag
+ case 'init'
+        disp('Starting the algorithm');
+    case {'iter','interrupt'}
+        %disp('Iterating ...')
+        ibest = state.Best(end);
+        ibest = find(state.Score == ibest,1,'last');
+        bestx = state.Population(ibest,:);
+        x=bestx;
+
+        [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),r);
+        %[Br, Dr]=BrightInDimOut(Frame(:,:,1),X,Y);
+        delete(hp);
+        hp=plot(ha,X,Y,'-xr');
+        [X Y]=BorderFunction(x(1),x(2),x(3),x(4),x(5),x(6),b);
+        %[Bb, Db]=BrightInDimOut(Frame(:,:,3),X,Y);
+        delete(hpb);
+        hpb=plot(ha,X,Y,'-xb');
+        set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))
+        drawnow
+    case 'done'
+        disp('Performing final task');
+end
+end
+
 if 0
     options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
 
@@ -171,6 +199,7 @@ hp=plot(ha,X,Y,'-xr');
 [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),b);
 hpb=plot(ha,X,Y,'-xb');
 
+if 0
 t1=tic;
 options = optimset('Display','iter','OutputFcn',@myoutfun,'Diagnostics','on','MaxFunEvals',1200,'HessUpdate','bfgs','TolFun',1e-9,'TolX',1e-9,'TypicalX',[1e-1,1,1,1,1,1e-1]);
 [Args, f,exitflag,output]=fminunc(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
@@ -179,8 +208,11 @@ PCCD=[Args(4),Args(5),Args(6)];
 toc(t1)
 
 t1=tic;
-options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
-[Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
+
+    options = optimset('Display','iter','OutputFcn',@myoutfun,'MaxIter',1200,'TolFun',1e-9,'TolX',1e-9);
+    [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
+else
+end
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
 toc(t1)
