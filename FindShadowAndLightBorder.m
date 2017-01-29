@@ -58,7 +58,17 @@ end
 %maxDiffInd+(maxDiffInd-minDiffInd);
 
 %point=2*maxDiffInd-minDiffInd;
+if firstDifMin>length(extremum)
+    firstDifMin=length(extremum);
+elseif firstDifMin<1
+    firstDifMin=1;
+end
 point=2*maxDiffInd-extremum(firstDifMin,3);
+if point>length(line)
+    point=length(line);
+elseif point<1
+    point=1;
+end
 %plot(point,line(point),'LineStyle','none','Marker','+','MarkerEdgeColor','b');
 
 end
