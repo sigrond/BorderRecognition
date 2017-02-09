@@ -15,10 +15,5 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
-<<<<<<< HEAD
 myNeuralNetworkFunction.m filter=lfs diff=lfs merge=lfs -text
 
-=======
-.\myNeuralNetworkFunction.m filter=lfs diff=lfs merge=lfs -text
-.\myNeuralNetworkFunction.* filter=lfs diff=lfs merge=lfs -text
->>>>>>> 31ac45fc229ec215c146c19235a52f6b523b35f7
