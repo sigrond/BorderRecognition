@@ -71,7 +71,7 @@ quickstart
 ```
 
 ##Wyniki profilera
-#Wybrane wyniki profilera(RayTracing natywnie w matlabie):
+####Wybrane wyniki profilera(RayTracing natywnie w matlabie):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -86,7 +86,7 @@ quickstart
 | BrightnesScalarization |	293 	|	18.091 s |	2.166 s 	|
 | cross 				 |	2657202 |	5.826 s  |	5.826 s 	|
 
-#Wybrane wyniki profilera(RayTracing w MEX C++):
+####Wybrane wyniki profilera(RayTracing w MEX C++):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -107,4 +107,4 @@ quickstart
 - [ ] Optymalizacja dla par wsp. Xi,Xj i f-celu
 - [ ] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
 - [ ] Więcej przykładów
-- [ ] Wyniki profilera dla RayTracing w C++
+- [x] Wyniki profilera dla RayTracing w C++
