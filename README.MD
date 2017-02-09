@@ -37,6 +37,9 @@ spodziewam się znaleźć wzór dyfrakcyjny. W celu znalezienia pixeli na tej pr
 Bresenhama. Znajdę największe maximum i minimum (lewo i prwostronna pochodna zerowa, aby pominąć wartość na brzegu odcinka).
 Maximum dyfrakcyjne jest w geometrycznym środku między minimum dyfrakcyjnym, a szukaną granicą światła i cienia.
 
+##Raport za semestr 16Z
+[Raport](https://github.com/sigrond/BorderRecognition/raw/master/RaportPDI1.odt.pdf)
+
 ##Zależności i użyte toolboxy Matlaba
 license('inuse')
 image_toolbox
@@ -68,7 +71,7 @@ quickstart
 ```
 
 ##Wyniki profilera
-Wybrane wyniki profilera:
+Wybrane wyniki profilera(RayTracing natywnie w matlabie):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -85,7 +88,11 @@ Wybrane wyniki profilera:
 
 
 ##Do zrobienia:
-- [ ] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci
+- [x] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci. są mapy dla par wsp. i f-celu
 - [x] Wyniki z profilera
 - [x] Kolory na obrazie jasnych punktów dla kanałów
 - [ ] Liczniki czasu na paskach okienek
+- [ ] Optymalizacja dla par wsp. Xi,Xj i f-celu
+- [ ] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
+- [ ] Więcej przykładów
+- [ ] Wyniki profilera dla RayTracing w C++
