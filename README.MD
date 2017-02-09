@@ -71,7 +71,7 @@ quickstart
 ```
 
 ##Wyniki profilera
-Wybrane wyniki profilera(RayTracing natywnie w matlabie):
+#Wybrane wyniki profilera(RayTracing natywnie w matlabie):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -85,6 +85,18 @@ Wybrane wyniki profilera(RayTracing natywnie w matlabie):
 | RayTracing>SphereCross |	1328601 |	27.832 s |	17.548 s 	|
 | BrightnesScalarization |	293 	|	18.091 s |	2.166 s 	|
 | cross 				 |	2657202 |	5.826 s  |	5.826 s 	|
+
+#Wybrane wyniki profilera(RayTracing w MEX C++):
+
+| Function Name		     |	Calls   | Total Time |	Self Time   |
+|------------------------|----------|------------|--------------|
+| BorderRecognition		 |	1		|  101.503 s |	0.727 s		|
+| BorderFunction		 |	11157	|	78.187 s |	69.297 s	|
+| fminsearch			 |	2		|	69.403 s |	0.253 s		|
+| MeanSquaredDistance	 |	810		|	67.349 s |	0.093 s		|
+| fminunc				 |	1		|	19.199 s |	0.273 s		|
+| BrightnesScalarization |	310		|	9.121 s	 |	2.403 s		|
+| RayTracing_MEX		 |	892560	|	2.998 s	 |	2.998 s		|
 
 
 ##Do zrobienia:
