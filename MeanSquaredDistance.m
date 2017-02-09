@@ -40,6 +40,10 @@ for i=1:length(PositionB(:,1))
 end
 
 distance=distance/((length(PositionR(:,1))+length(PositionB(:,1))-notused)^2);
+%[1,1,1,1.5,1.5,Args(6)+3]
+if abs(Args(1))>1 || abs(Args(2))>1 || abs(Args(3))>1 || abs(Args(4))>1.5 || abs(Args(5))>1.5 || Args(6)<81 ||Args(6)>87
+    distance=10000;
+end
 
 if(distance==NaN || distance==Inf || isnan(distance) || isinf(distance))
     distance=10000;
