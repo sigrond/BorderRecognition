@@ -122,3 +122,4 @@ quickstart
 - [ ] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
 - [ ] Więcej przykładów
 - [x] Wyniki profilera dla RayTracing w C++
+- [ ] Fitowanie całek Frenzela

@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 09-Feb-2017 13:58:36
+% Last Modified by GUIDE v2.5 09-Feb-2017 18:20:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,6 +73,8 @@ switch Op
         set(handles.radiobutton4,'Value',1);
     case 3
         set(handles.radiobutton5,'Value',1);
+    case 4
+        set(handles.radiobutton6,'Value',1);
 end
         
 
@@ -126,6 +128,8 @@ switch Op
         set(handles.radiobutton4,'Value',1);
     case 3
         set(handles.radiobutton5,'Value',1);
+    case 4
+        set(handles.radiobutton6,'Value',1);
 end
 
 % Update handles structure
@@ -186,4 +190,15 @@ function radiobutton5_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton5
 handles.Op=3;
+guidata(hObject, handles);
+
+
+% --- Executes on button press in radiobutton6.
+function radiobutton6_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton6
+handles.Op=4;
 guidata(hObject, handles);

@@ -14,27 +14,27 @@ map2dYZ=zeros(20,20);
 y=zeros(20);
 z=zeros(20);
 y=linspace(-1,1,20);
-z=linspace(84.2,86.2,20);
+z=linspace(83.5,85.5,20);
 for i=1:20
     for j=1:20
         %xZ
-        point=[(j-10)*0.1,0,0,0,0,85.2+(i-10)*0.1];
+        point=[(j-10)*0.1,0,0,0,0,84.5+(i-10)*0.1];
         map2dxZ(i,j)=MeanSquaredDistance(pointsr,pointsb,point);
         
         %yZ
-        point=[0,(j-10)*0.1,0,0,0,85.2+(i-10)*0.1];
+        point=[0,(j-10)*0.1,0,0,0,84.5+(i-10)*0.1];
         map2dyZ(i,j)=MeanSquaredDistance(pointsr,pointsb,point);
         
         %zZ
-        point=[0,0,(j-10)*0.1,0,0,85.2+(i-10)*0.1];
+        point=[0,0,(j-10)*0.1,0,0,84.5+(i-10)*0.1];
         map2dzZ(i,j)=MeanSquaredDistance(pointsr,pointsb,point);
         
         %XZ
-        point=[0,0,0,(j-10)*0.1,0,85.2+(i-10)*0.1];
+        point=[0,0,0,(j-10)*0.1,0,84.5+(i-10)*0.1];
         map2dXZ(i,j)=MeanSquaredDistance(pointsr,pointsb,point);
         
         %YZ
-        point=[0,0,0,0,(j-10)*0.1,85.2+(i-10)*0.1];
+        point=[0,0,0,0,(j-10)*0.1,84.5+(i-10)*0.1];
         map2dYZ(i,j)=MeanSquaredDistance(pointsr,pointsb,point);
     end
     str=sprintf('\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\t\t%6.3f%%\n',((i-1)/0.2));
