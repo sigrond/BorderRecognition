@@ -98,6 +98,20 @@ quickstart
 | BrightnesScalarization |	310		|	9.121 s	 |	2.403 s		|
 | RayTracing_MEX		 |	892560	|	2.998 s	 |	2.998 s		|
 
+####Wybrane wyniki po zmienieniu mało wydajnego kawałka kodu w Border Function:
+
+| Function Name		     |	Calls   | Total Time |	Self Time   |
+|------------------------|----------|------------|--------------|
+| BorderRecognition		 |	1		|	25.005 s |	0.029 s		|
+| fminsearch			 |	2		|	19.839 s |	0.176 s		|
+| BorderFunction		 |	11157	|	14.314 s |	6.821 s		|
+| MeanSquaredDistance	 |	810		|	12.210 s |	0.087 s		|
+| BrightnesScalarization |	310		|	4.791 s	 |	2.275 s		|
+| effective_aperture	 |	11157	|	4.567 s	 |	0.472 s		|
+| fzero					 |	11157	|	3.986 s	 |	2.847 s		|
+| fminunc				 |	1		|	3.354 s	 |	0.013 s		|
+| RayTracing_MEX		 |	892560	|	1.717 s	 |	1.717 s		|
+
 
 ##Do zrobienia:
 - [x] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci. są mapy dla par wsp. i f-celu
