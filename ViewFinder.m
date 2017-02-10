@@ -67,6 +67,7 @@ else
     set(handles.text8,'ForeGroundColor','g');
 end
 g=zeros(6,2);
+g1=zeros(6,1);
 dx=0.1;
 for i=1:6
     tmpA=Args;
@@ -74,7 +75,16 @@ for i=1:6
     g(i,1)=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args)-MeanSquaredDistance(handles.pointsr,handles.pointsb,tmpA);
     tmpA(i)=Args(i)-dx;
     g(i,2)=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args)-MeanSquaredDistance(handles.pointsr,handles.pointsb,tmpA);
+    if(g(i,1)>g(i,2) && g(i,1)>0)
+        g1(i)=g(i,1);
+    elseif g(i,2)>g(i,1) && g(i,2)>0
+        g1(i)=g(i,2);
+    else
+        g1(i)=0;
+    end
 end
+quiver3(handles.axes2,0,0,0,g1(1),g1(2),g1(3));
+quiver3(handles.axes1,0,0,0,g1(4),g1(5),g1(6));
 [M,I]=max(g(:));
 [I_row, I_col] = ind2sub(size(g),I);
 set(handles.FPkx,'ForeGroundColor','k');
@@ -87,62 +97,62 @@ switch I_row
     case 1
         if I_col==1
             set(handles.FPkx,'String','+0.1');
-            quiver3(handles.axes2,0,0,0,dx,0,0);
+            %quiver3(handles.axes2,0,0,0,dx,0,0);
         else
             set(handles.FPkx,'String','-0.1');
-            quiver3(handles.axes2,0,0,0,-dx,0,0);
+            %quiver3(handles.axes2,0,0,0,-dx,0,0);
         end
         quiver3(handles.axes1,0,0,0,0,0,0);
-        set(handles.FPkx,'ForeGroundColor','g');
+        %set(handles.FPkx,'ForeGroundColor','g');
     case 2
         if I_col==1
             set(handles.FPky,'String','+0.1');
-            quiver3(handles.axes2,0,0,0,0,dx,0);
+            %quiver3(handles.axes2,0,0,0,0,dx,0);
         else
             set(handles.FPky,'String','-0.1');
-            quiver3(handles.axes2,0,0,0,0,-dx,0);
+            %quiver3(handles.axes2,0,0,0,0,-dx,0);
         end
-        quiver3(handles.axes1,0,0,0,0,0,0);
+        %quiver3(handles.axes1,0,0,0,0,0,0);
         set(handles.FPky,'ForeGroundColor','g');
     case 3
         if I_col==1
             set(handles.FPkz,'String','+0.1');
-            quiver3(handles.axes2,0,0,0,0,0,dx);
+            %quiver3(handles.axes2,0,0,0,0,0,dx);
         else
             set(handles.FPkz,'String','-0.1');
-            quiver3(handles.axes2,0,0,0,0,0,-dx);
+            %quiver3(handles.axes2,0,0,0,0,0,-dx);
         end
-        quiver3(handles.axes1,0,0,0,0,0,0);
+        %quiver3(handles.axes1,0,0,0,0,0,0);
         set(handles.FPkz,'ForeGroundColor','g');
     case 4
         if I_col==1
             set(handles.FPCx,'String','+0.1');
-            quiver3(handles.axes1,0,0,0,dx,0,0);
+            %quiver3(handles.axes1,0,0,0,dx,0,0);
         else
             set(handles.FPCx,'String','-0.1');
-            quiver3(handles.axes1,0,0,0,-dx,0,0);
+            %quiver3(handles.axes1,0,0,0,-dx,0,0);
         end
-        quiver3(handles.axes2,0,0,0,0,0,0);
+        %quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCx,'ForeGroundColor','g');
     case 5
         if I_col==1
             set(handles.FPCy,'String','+0.1');
-            quiver3(handles.axes1,0,0,0,0,dx,0);
+            %quiver3(handles.axes1,0,0,0,0,dx,0);
         else
             set(handles.FPCy,'String','-0.1');
-            quiver3(handles.axes1,0,0,0,0,-dx,0);
+            %quiver3(handles.axes1,0,0,0,0,-dx,0);
         end
-        quiver3(handles.axes2,0,0,0,0,0,0);
+        %quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCy,'ForeGroundColor','g');
     case 6
         if I_col==1
             set(handles.FPCz,'String','+0.1');
-            quiver3(handles.axes1,0,0,0,0,0,dx);
+            %quiver3(handles.axes1,0,0,0,0,0,dx);
         else
             set(handles.FPCz,'String','-0.1');
-            quiver3(handles.axes1,0,0,0,0,0,-dx);
+            %quiver3(handles.axes1,0,0,0,0,0,-dx);
         end
-        quiver3(handles.axes2,0,0,0,0,0,0);
+        %quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCz,'ForeGroundColor','g');
 end
 set(handles.edit1,'String',num2str(handles.Pk,4));
