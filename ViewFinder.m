@@ -66,7 +66,70 @@ if handles.Fcelu>oldFcelu
 else
     set(handles.text8,'ForeGroundColor','g');
 end
-guidata(hObject, handles);
+g=zeros(6,2);
+dx=0.1;
+for i=1:6
+    tmpA=Args;
+    tmpA(i)=Args(i)+dx;
+    g(i,1)=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args)-MeanSquaredDistance(handles.pointsr,handles.pointsb,tmpA);
+    tmpA(i)=Args(i)-dx;
+    g(i,2)=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args)-MeanSquaredDistance(handles.pointsr,handles.pointsb,tmpA);
+end
+[M,I]=max(g(:));
+[I_row, I_col] = ind2sub(size(g),I);
+set(handles.FPkx,'ForeGroundColor','k');
+set(handles.FPky,'ForeGroundColor','k');
+set(handles.FPkz,'ForeGroundColor','k');
+set(handles.FPCx,'ForeGroundColor','k');
+set(handles.FPCy,'ForeGroundColor','k');
+set(handles.FPCz,'ForeGroundColor','k');
+switch I_row
+    case 1
+        if I_col==1
+            set(handles.FPkx,'String','+0.1');
+        else
+            set(handles.FPkx,'String','-0.1');
+        end
+        set(handles.FPkx,'ForeGroundColor','g');
+    case 2
+        if I_col==1
+            set(handles.FPky,'String','+0.1');
+        else
+            set(handles.FPky,'String','-0.1');
+        end
+        set(handles.FPky,'ForeGroundColor','g');
+    case 3
+        if I_col==1
+            set(handles.FPkz,'String','+0.1');
+        else
+            set(handles.FPkz,'String','-0.1');
+        end
+        set(handles.FPkz,'ForeGroundColor','g');
+    case 4
+        if I_col==1
+            set(handles.FPCx,'String','+0.1');
+        else
+            set(handles.FPCx,'String','-0.1');
+        end
+        set(handles.FPCx,'ForeGroundColor','g');
+    case 5
+        if I_col==1
+            set(handles.FPCy,'String','+0.1');
+        else
+            set(handles.FPCy,'String','-0.1');
+        end
+        set(handles.FPCy,'ForeGroundColor','g');
+    case 6
+        if I_col==1
+            set(handles.FPCz,'String','+0.1');
+        else
+            set(handles.FPCz,'String','-0.1');
+        end
+        set(handles.FPCz,'ForeGroundColor','g');
+end
+set(handles.edit1,'String',num2str(handles.Pk,4));
+set(handles.edit2,'String',num2str(handles.PCCD,4));
+%guidata(hObject, handles);
 
 
 % --- Executes just before ViewFinder is made visible.
@@ -95,6 +158,8 @@ set(handles.edit2,'String',num2str(handles.PCCD,4));
 Args=[handles.Pk, handles.PCCD];
 handles.Fcelu=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args);
 set(handles.text7,'String',sprintf('F-celu: %s',num2str(handles.Fcelu)));
+
+handles=ReDraw(hObject,handles);
 
 % Update handles structure
 guidata(hObject, handles);
@@ -185,6 +250,10 @@ function FPkx_Callback(hObject, eventdata, handles)
 % hObject    handle to FPkx (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.Pk(1)=handles.Pk(1)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in FPky.
@@ -192,6 +261,10 @@ function FPky_Callback(hObject, eventdata, handles)
 % hObject    handle to FPky (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.Pk(2)=handles.Pk(2)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in FPkz.
@@ -199,6 +272,10 @@ function FPkz_Callback(hObject, eventdata, handles)
 % hObject    handle to FPkz (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.Pk(3)=handles.Pk(3)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in FPCx.
@@ -206,6 +283,10 @@ function FPCx_Callback(hObject, eventdata, handles)
 % hObject    handle to FPCx (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.PCCD(1)=handles.PCCD(1)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in FPCy.
@@ -213,6 +294,10 @@ function FPCy_Callback(hObject, eventdata, handles)
 % hObject    handle to FPCy (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.PCCD(2)=handles.PCCD(2)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in FPCz.
@@ -220,3 +305,7 @@ function FPCz_Callback(hObject, eventdata, handles)
 % hObject    handle to FPCz (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.PCCD(3)=handles.PCCD(3)+str2num(get(hObject,'String'));
+set(hObject,'ForeGroundColor','b');
+handles=ReDraw(hObject,handles);
+guidata(hObject, handles);
