@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 10-Feb-2017 13:57:18
+% Last Modified by GUIDE v2.5 10-Feb-2017 16:29:11
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -77,6 +77,8 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
+    case 6
+        set(handles.radiobutton8,'Value',1);
 end
 if ~exist('BPoints','var');
     BPoints=12;
@@ -140,6 +142,8 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
+    case 6
+        set(handles.radiobutton8,'Value',1);
 end
 handles.BPoints=BPoints;
 set(handles.edit1,'String',BPoints);
@@ -250,3 +254,14 @@ function edit1_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in radiobutton8.
+function radiobutton8_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton8
+handles.Op=6;
+guidata(hObject, handles);

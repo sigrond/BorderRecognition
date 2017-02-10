@@ -332,8 +332,8 @@ elseif Op==4
     [Args([5,6]), f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,[Args(1),Args(2),Args(3),Args(4),x(1),x(2)]),[Args(5),Args(6)],options);
     
 elseif Op==5
-     [Args, f,exitflag,output]=lsqnonlin(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],[],[],optimoptions(@lsqnonlin,'Algorithm','trust-region-reflective','Diagnostics','on','Display','iter','OutputFcn',@myoutfun));
-     [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
+    [Args, f,exitflag,output]=lsqnonlin(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],[],[],optimoptions(@lsqnonlin,'Algorithm','trust-region-reflective','Diagnostics','on','Display','iter','OutputFcn',@myoutfun));
+    [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
     delete(hp);
     hp=plot(ha,X,Y,'-xr');
     [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),b);
@@ -341,6 +341,8 @@ elseif Op==5
     hpb=plot(ha,X,Y,'-xb');
     set(hf,'name',sprintf('%f %f %f %f %f %f',Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)))
     drawnow
+elseif Op==6
+    ViewFinder(Pk,PCCD,ha,hf,hp,hpb,pointsr,pointsb)
 end
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];

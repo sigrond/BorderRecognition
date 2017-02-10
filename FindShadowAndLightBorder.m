@@ -25,6 +25,9 @@ end
 %hold on;
 %plot(extremum(1:k,3),extremum(1:k,1),'LineStyle','none','Marker','x','MarkerEdgeColor','r');
 
+%model = @(v)arrayfun(@(x) integral(@(t) sin(t^2), 0, x),v); 
+%x = lsqcurvefit(model,0,1:length(line),line)
+
 
 %znajdowanie najwy¿szej "amplitudy"
 maxDifference=0;
