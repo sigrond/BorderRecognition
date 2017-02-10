@@ -87,44 +87,62 @@ switch I_row
     case 1
         if I_col==1
             set(handles.FPkx,'String','+0.1');
+            quiver3(handles.axes2,0,0,0,dx,0,0);
         else
             set(handles.FPkx,'String','-0.1');
+            quiver3(handles.axes2,0,0,0,-dx,0,0);
         end
+        quiver3(handles.axes1,0,0,0,0,0,0);
         set(handles.FPkx,'ForeGroundColor','g');
     case 2
         if I_col==1
             set(handles.FPky,'String','+0.1');
+            quiver3(handles.axes2,0,0,0,0,dx,0);
         else
             set(handles.FPky,'String','-0.1');
+            quiver3(handles.axes2,0,0,0,0,-dx,0);
         end
+        quiver3(handles.axes1,0,0,0,0,0,0);
         set(handles.FPky,'ForeGroundColor','g');
     case 3
         if I_col==1
             set(handles.FPkz,'String','+0.1');
+            quiver3(handles.axes2,0,0,0,0,0,dx);
         else
             set(handles.FPkz,'String','-0.1');
+            quiver3(handles.axes2,0,0,0,0,0,-dx);
         end
+        quiver3(handles.axes1,0,0,0,0,0,0);
         set(handles.FPkz,'ForeGroundColor','g');
     case 4
         if I_col==1
             set(handles.FPCx,'String','+0.1');
+            quiver3(handles.axes1,0,0,0,dx,0,0);
         else
             set(handles.FPCx,'String','-0.1');
+            quiver3(handles.axes1,0,0,0,-dx,0,0);
         end
+        quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCx,'ForeGroundColor','g');
     case 5
         if I_col==1
             set(handles.FPCy,'String','+0.1');
+            quiver3(handles.axes1,0,0,0,0,dx,0);
         else
             set(handles.FPCy,'String','-0.1');
+            quiver3(handles.axes1,0,0,0,0,-dx,0);
         end
+        quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCy,'ForeGroundColor','g');
     case 6
         if I_col==1
             set(handles.FPCz,'String','+0.1');
+            quiver3(handles.axes1,0,0,0,0,0,dx);
         else
             set(handles.FPCz,'String','-0.1');
+            quiver3(handles.axes1,0,0,0,0,0,-dx);
         end
+        quiver3(handles.axes2,0,0,0,0,0,0);
         set(handles.FPCz,'ForeGroundColor','g');
 end
 set(handles.edit1,'String',num2str(handles.Pk,4));
@@ -236,6 +254,11 @@ function pushbutton_Apply_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_Apply (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles=ReDraw(hObject,handles);
+global Pk PCCD
+Pk=handles.Pk
+PCCD=handles.PCCD
+guidata(hObject, handles);
 
 
 % --- Executes on button press in pushbutton2.
