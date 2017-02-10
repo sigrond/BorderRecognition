@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 09-Feb-2017 20:14:48
+% Last Modified by GUIDE v2.5 10-Feb-2017 13:57:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,6 +78,11 @@ switch Op
     case 5
         set(handles.radiobutton7,'Value',1);
 end
+if ~exist('BPoints','var');
+    BPoints=12;
+end
+handles.BPoints=BPoints;
+set(handles.edit1,'String',BPoints);
         
 
 % Update handles structure
@@ -105,7 +110,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 BP=handles.BP;
 Op=handles.Op;
-save('BR_settings.mat','BP','Op');
+BPoints=handles.BPoints;
+save('BR_settings.mat','BP','Op','BPoints');
 
 
 % --- Executes on button press in pushbutton2.
@@ -135,6 +141,8 @@ switch Op
     case 5
         set(handles.radiobutton7,'Value',1);
 end
+handles.BPoints=BPoints;
+set(handles.edit1,'String',BPoints);
 
 % Update handles structure
 guidata(hObject, handles);
@@ -217,3 +225,28 @@ function radiobutton7_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of radiobutton7
 handles.Op=5;
 guidata(hObject, handles);
+
+
+
+function edit1_Callback(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit1 as text
+%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+handles.BPoints=str2double(get(hObject,'String'));
+guidata(hObject, handles);
+
+
+% --- Executes during object creation, after setting all properties.
+function edit1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

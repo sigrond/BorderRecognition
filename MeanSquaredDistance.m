@@ -20,7 +20,7 @@ for i=1:length(PositionR(:,1))
     tmp=(BorderDistance(X,Y,PositionR(i,1),PositionR(i,2)))^2;
     if(tmp==NaN || tmp==Inf || isnan(tmp) || isinf(tmp))
 
-        tmp=1;
+        tmp=10;
 
         notused=notused-1;
     end
@@ -32,7 +32,7 @@ for i=1:length(PositionB(:,1))
     tmp=(BorderDistance(X,Y,PositionB(i,1),PositionB(i,2)))^2;
     if(tmp==NaN || tmp==Inf || isnan(tmp) || isinf(tmp))
 
-        tmp=1;
+        tmp=10;
 
         notused=notused-1;
     end
@@ -42,7 +42,7 @@ end
 distance=distance/((length(PositionR(:,1))+length(PositionB(:,1))-notused)^2);
 %[1,1,1,1.5,1.5,Args(6)+3]
 if abs(Args(1))>1 || abs(Args(2))>1 || abs(Args(3))>1 || abs(Args(4))>1.5 || abs(Args(5))>1.5 || Args(6)<81 ||Args(6)>87
-    distance=10000;
+    distance=distance+10000;
 end
 
 if(distance==NaN || distance==Inf || isnan(distance) || isinf(distance))

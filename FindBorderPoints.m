@@ -406,7 +406,8 @@ b=458;
 hp=plot(ha,X,Y,'-xr');
 ib=0;
 ir=0;
-for i=1:12
+load('BR_settings.mat','BPoints');
+for i=1:BPoints%12
     hs=scatter(ha,data(I(i)).v(1:data(I(i)).j,1),data(I(i)).v(1:data(I(i)).j,2),'filled','MarkerFaceColor',data(I(i)).color);
     point=FindShadowAndLightBorder(data(I(i)).line(1:data(I(i)).j));
     hs=scatter(ha,data(I(i)).v(point,1),data(I(i)).v(point,2),'filled','MarkerFaceColor','c');
