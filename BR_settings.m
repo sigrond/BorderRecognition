@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 10-Feb-2017 16:29:11
+% Last Modified by GUIDE v2.5 11-Feb-2017 11:44:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,7 +57,17 @@ handles.output = hObject;
 
 handles.BP=1;
 handles.Op=1;
+handles.VFch=0;
 load('BR_settings.mat');
+if ~exist('BP','var');
+    BP=1;
+end
+if ~exist('Op','var');
+    Op=1;
+end
+if ~exist('VFch','var');
+    VFch=0;
+end
 handles.BP=BP;
 switch BP
     case 1
@@ -77,9 +87,9 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
-    case 6
-        set(handles.radiobutton8,'Value',1);
 end
+handles.VFch=VFch;
+set(handles.viewfinderchb,'Value',VFch);
 if ~exist('BPoints','var');
     BPoints=12;
 end
@@ -105,26 +115,27 @@ function varargout = BR_settings_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in pbsave.
+function pbsave_Callback(hObject, eventdata, handles)
+% hObject    handle to pbsave (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 BP=handles.BP;
 Op=handles.Op;
 BPoints=handles.BPoints;
-save('BR_settings.mat','BP','Op','BPoints');
+VFch=handles.VFch;
+save('BR_settings.mat','BP','Op','BPoints','VFch');
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
+% --- Executes on button press in pbload.
+function pbload_Callback(hObject, eventdata, handles)
+% hObject    handle to pbload (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 load('BR_settings.mat');
 handles.BP=BP;
 handles.Op=Op;
-handles.BP=BP;
+handles.VFch=VFch;
 switch BP
     case 1
         set(handles.radiobutton1,'Value',1);
@@ -142,9 +153,9 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
-    case 6
-        set(handles.radiobutton8,'Value',1);
 end
+handles.VFch=VFch;
+set(handles.viewfinderchb,'Value',VFch);
 handles.BPoints=BPoints;
 set(handles.edit1,'String',BPoints);
 
@@ -256,12 +267,31 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in radiobutton8.
-function radiobutton8_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton8 (see GCBO)
+% --- Executes on button press in viewfinderchb.
+function viewfinderchb_Callback(hObject, eventdata, handles)
+% hObject    handle to viewfinderchb (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of radiobutton8
-handles.Op=6;
+% Hint: get(hObject,'Value') returns toggle state of viewfinderchb
+handles.VFch=get(hObject,'Value');
 guidata(hObject, handles);
+
+
+% --- Executes on button press in pbqstart.
+function pbqstart_Callback(hObject, eventdata, handles)
+% hObject    handle to pbqstart (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+quickstart
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+uiresume();
+delete(hObject);

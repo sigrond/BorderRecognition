@@ -22,7 +22,7 @@ function varargout = ViewFinder(varargin)
 
 % Edit the above text to modify the response to help ViewFinder
 
-% Last Modified by GUIDE v2.5 10-Feb-2017 16:28:40
+% Last Modified by GUIDE v2.5 11-Feb-2017 11:46:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -168,9 +168,8 @@ function ViewFinder_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to ViewFinder (see VARARGIN)
 
-% Choose default command line output for ViewFinder
-handles.output = hObject;
-varargin
+
+%varargin
 handles.Pk=varargin{1};
 handles.PCCD=varargin{2};
 handles.ha=varargin{3};
@@ -179,6 +178,9 @@ handles.hp=varargin{5};
 handles.hpb=varargin{6};
 handles.pointsr=varargin{7};
 handles.pointsb=varargin{8};
+
+% Choose default command line output for ViewFinder
+handles.output = [handles.Pk, handles.PCCD];
 
 set(handles.edit1,'String',num2str(handles.Pk,4));
 set(handles.edit2,'String',num2str(handles.PCCD,4));
@@ -193,7 +195,7 @@ handles=ReDraw(hObject,handles);
 guidata(hObject, handles);
 
 % UIWAIT makes ViewFinder wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
+uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -202,9 +204,11 @@ function varargout = ViewFinder_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+handles.output = [handles.Pk, handles.PCCD];
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+% The figure can be deleted now
+delete(handles.figure1);
 
 
 
@@ -265,9 +269,7 @@ function pushbutton_Apply_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles=ReDraw(hObject,handles);
-global Pk PCCD
-Pk=handles.Pk
-PCCD=handles.PCCD
+handles.output = [handles.Pk, handles.PCCD];
 guidata(hObject, handles);
 
 
@@ -342,3 +344,19 @@ handles.PCCD(3)=handles.PCCD(3)+str2num(get(hObject,'String'));
 set(hObject,'ForeGroundColor','b');
 handles=ReDraw(hObject,handles);
 guidata(hObject, handles);
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+if isequal(get(hObject, 'waitstatus'), 'waiting')
+    % The GUI is still in UIWAIT, us UIRESUME
+    uiresume(hObject);
+else
+    % The GUI is no longer waiting, just close it
+    delete(hObject);
+end

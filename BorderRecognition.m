@@ -10,7 +10,7 @@ else
     initial_point=[0,0,0,0,0,82];
 end
 
-load('BR_settings.mat','BP','Op');
+load('BR_settings.mat','BP','Op','VFch');
 
 if BP==2
     %hf = imtool( Frame./(max(max(max(Frame)))/20) );
@@ -341,8 +341,13 @@ elseif Op==5
     hpb=plot(ha,X,Y,'-xb');
     set(hf,'name',sprintf('%f %f %f %f %f %f',Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)))
     drawnow
-elseif Op==6
-    ViewFinder(Pk,PCCD,ha,hf,hp,hpb,pointsr,pointsb)
+end
+if VFch==1
+    Pk=[Args(1),Args(2),Args(3)];
+    PCCD=[Args(4),Args(5),Args(6)];
+    if exist('pointsr','var')
+        Args=ViewFinder(Pk,PCCD,ha,hf,hp,hpb,pointsr,pointsb);
+    end
 end
 Pk=[Args(1),Args(2),Args(3)];
 PCCD=[Args(4),Args(5),Args(6)];
