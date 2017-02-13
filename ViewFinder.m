@@ -66,6 +66,7 @@ if handles.Fcelu>oldFcelu
 else
     set(handles.text8,'ForeGroundColor','g');
 end
+myButtons=[handles.FPkx handles.FPky handles.FPkz handles.FPCx handles.FPCy handles.FPCz];
 g=zeros(6,2);
 g1=zeros(6,1);
 dx=0.1;
@@ -77,10 +78,13 @@ for i=1:6
     g(i,2)=MeanSquaredDistance(handles.pointsr,handles.pointsb,Args)-MeanSquaredDistance(handles.pointsr,handles.pointsb,tmpA);
     if(g(i,1)>g(i,2) && g(i,1)>0)
         g1(i)=g(i,1);
+        set(myButtons(i),'String','+0.1');
     elseif g(i,2)>g(i,1) && g(i,2)>0
         g1(i)=g(i,2);
+        set(myButtons(i),'String','-0.1');
     else
         g1(i)=0;
+        set(myButtons(i),'String','+0.0');
     end
 end
 quiver3(handles.axes2,0,0,0,g1(1),g1(2),g1(3));
@@ -93,6 +97,16 @@ set(handles.FPkz,'ForeGroundColor','k');
 set(handles.FPCx,'ForeGroundColor','k');
 set(handles.FPCy,'ForeGroundColor','k');
 set(handles.FPCz,'ForeGroundColor','k');
+
+for i=1:6
+    if(g(i,1)>g(i,2) && g(i,1)>0)
+        g1(i)=g(i,1);
+    elseif g(i,2)>g(i,1) && g(i,2)>0
+        g1(i)=g(i,2);
+    else
+        g1(i)=0;
+    end
+end
 switch I_row
     case 1
         if I_col==1
