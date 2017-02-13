@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 11-Feb-2017 11:44:41
+% Last Modified by GUIDE v2.5 13-Feb-2017 13:53:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -68,6 +68,14 @@ end
 if ~exist('VFch','var');
     VFch=0;
 end
+if ~exist('BrightTime','var');
+    BrightTime=10;
+end
+handles.BrightTime=BrightTime;
+if ~exist('OptTime','var');
+    OptTime=300;
+end
+handles.OptTime=OptTime;
 handles.BP=BP;
 switch BP
     case 1
@@ -95,6 +103,8 @@ if ~exist('BPoints','var');
 end
 handles.BPoints=BPoints;
 set(handles.edit1,'String',BPoints);
+set(handles.edit_BrightTime,'String',BrightTime);
+set(handles.edit_OptTime,'String',OptTime);
         
 
 % Update handles structure
@@ -124,7 +134,9 @@ BP=handles.BP;
 Op=handles.Op;
 BPoints=handles.BPoints;
 VFch=handles.VFch;
-save('BR_settings.mat','BP','Op','BPoints','VFch');
+BrightTime=handles.BrightTime;
+OptTime=handles.OptTime;
+save('BR_settings.mat','BP','Op','BPoints','VFch','BrightTime','OptTime');
 
 
 % --- Executes on button press in pbload.
@@ -158,6 +170,10 @@ handles.VFch=VFch;
 set(handles.viewfinderchb,'Value',VFch);
 handles.BPoints=BPoints;
 set(handles.edit1,'String',BPoints);
+handles.BrightTime=BrightTime;
+set(handles.edit_BrightTime,'String',BrightTime);
+handles.OptTime=OptTime;
+set(handles.edit_OptTime,'String',OptTime);
 
 % Update handles structure
 guidata(hObject, handles);
@@ -295,3 +311,53 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % Hint: delete(hObject) closes the figure
 uiresume();
 delete(hObject);
+
+
+
+function edit_OptTime_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_OptTime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_OptTime as text
+%        str2double(get(hObject,'String')) returns contents of edit_OptTime as a double
+handles.OptTime=str2double(get(hObject,'String'));
+guidata(hObject, handles);
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_OptTime_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_OptTime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit_BrightTime_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_BrightTime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_BrightTime as text
+%        str2double(get(hObject,'String')) returns contents of edit_BrightTime as a double
+handles.BrightTime=str2double(get(hObject,'String'));
+guidata(hObject, handles);
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_BrightTime_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_BrightTime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

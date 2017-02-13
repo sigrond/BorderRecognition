@@ -10,7 +10,9 @@ else
     initial_point=[0,0,0,0,0,82];
 end
 
-load('BR_settings.mat','BP','Op','VFch');
+load('BR_settings.mat','BP','Op','VFch','BrightTime','OptTime');
+myMaxTime=BrightTime;
+
 
 if BP==2
     %hf = imtool( Frame./(max(max(max(Frame)))/20) );
@@ -85,10 +87,10 @@ hpb=plot(ha,X,Y,'-xb');
 set(hf,'name',sprintf('%f %f %f %f %f %f',x(1),x(2),x(3),x(4),x(5),x(6)))
 drawnow
 %display(Br+Bb+Dr+Db);
-if(toc(t0)>200)
+if(toc(t0)>OptTime)
     stop=true;
 end
-if(toc(t1)>90)
+if(toc(t1)>myMaxTime)
     stop=true;
 end
 end
@@ -257,6 +259,7 @@ elseif Op~=3
     PCCD=[Args(4),Args(5),Args(6)];
     toc(t1)
 end
+myMaxTime=OptTime;
 
 if Op~=3
     [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
@@ -307,7 +310,7 @@ if Op==1
     [Args, f,exitflag,output]=fminsearch(@(x)MeanSquaredDistance(pointsr,pointsb,x),[Args(1),Args(2),Args(3),Args(4),Args(5),Args(6)],options);
 elseif Op==2
 
-    [Args, f,exitflag,output]=ga(@(x)MeanSquaredDistance(pointsr,pointsb,x),6,[1,0,0,0,0,0;0,1,0,0,0,0;0,0,1,0,0,0;0,0,0,1,0,0;0,0,0,0,1,0;0,0,0,0,0,1],[1,1,1,1.5,1.5,Args(6)+3],[],[],[-1,-1,-1,-1.5,-1.5,Args(6)-3],[1,1,1,1.5,1.5,Args(6)+3],[],gaoptimset('Display','iter','OutputFcn',@mygaoutputfcn,'TimeLimit',300));
+    [Args, f,exitflag,output]=ga(@(x)MeanSquaredDistance(pointsr,pointsb,x),6,[1,0,0,0,0,0;0,1,0,0,0,0;0,0,1,0,0,0;0,0,0,1,0,0;0,0,0,0,1,0;0,0,0,0,0,1],[1,1,1,1.5,1.5,Args(6)+3],[],[],[-1,-1,-1,-1.5,-1.5,Args(6)-3],[1,1,1,1.5,1.5,Args(6)+3],[],gaoptimset('Display','iter','OutputFcn',@mygaoutputfcn,'TimeLimit',OptTime));
 
 elseif Op==3
     if exist('myNeuralNetworkFunction','file')
