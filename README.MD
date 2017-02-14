@@ -44,6 +44,7 @@ Maximum dyfrakcyjne jest w geometrycznym środku między minimum dyfrakcyjnym, a
 license('inuse')
 image_toolbox
 matlab
+optimization_toolbox
 
 [f,p]=matlab.codetools.requiredFilesAndProducts('BorderRecognition.m')
 
@@ -58,9 +59,11 @@ p =
     ProductNumber
     Certain
 	
-	
+
 'MATLAB'	'8.6'	1	true
+'Optimization Toolbox'	'7.3'	6	true
 'Image Processing Toolbox'	'9.3'	17	true
+'Global Optimization Toolbox'	'3.3.2'	90	true
 
 
 

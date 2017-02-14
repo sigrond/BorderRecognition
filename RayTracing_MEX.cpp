@@ -2,6 +2,9 @@
 #include "float3.hpp"
 #include "HandlesStructures.hpp"
 #include <cstdio>
+#include <cmath>
+
+using namespace std;
 
 float dot(const float3 &a, float3 &b)
 {
