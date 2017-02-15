@@ -13,6 +13,15 @@ end
 load('BR_settings.mat','BP','Op','VFch','BrightTime','OptTime');
 myMaxTime=BrightTime;
 
+r=658;
+g=532;
+b=458;
+global efDr efDg efDb;
+
+handles.S=SetSystem;
+efDr  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,r,25);
+efDg  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,g,25);
+efDb  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,b,25);
 
 if BP==2
     %hf = imtool( Frame./(max(max(max(Frame)))/20) );

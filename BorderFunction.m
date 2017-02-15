@@ -1,11 +1,25 @@
 function [ X Y ] = BorderFunction( PkX,PkY,PkZ,shX,shY,lCCD,lambda )
 %BorderFunction funkcja generuj¹ca ramkê
 %   Detailed explanation goes here
+global efDr efDg efDb;
+
+r=658;
+g=532;
+b=458;
 
 handles.S=SetSystem;
 if(exist('lambda','var'))
     handles.S.lambda=lambda;
-    handles.S.efD  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,handles.S.lambda,25);
+    if lambda==r
+        efD  = efDr;
+    elseif lambda==g
+        efD  = efDg;
+    elseif lambda==b
+        efD  = efDb;
+    else
+        efD  = effective_aperture(handles.S.D/2,handles.S.tc,handles.S.l1,handles.S.lambda,25);
+    end
+    handles.S.efD  = efD;
 end
 handles.S.m2 = Calculate_m(25,handles.S.lambda, 'BK7');
 
