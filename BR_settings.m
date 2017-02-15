@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 13-Feb-2017 13:53:24
+% Last Modified by GUIDE v2.5 15-Feb-2017 12:27:45
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -95,6 +95,8 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
+    case 6
+        set(handles.radiobutton_SD,'Value',1);
 end
 handles.VFch=VFch;
 set(handles.viewfinderchb,'Value',VFch);
@@ -165,6 +167,8 @@ switch Op
         set(handles.radiobutton6,'Value',1);
     case 5
         set(handles.radiobutton7,'Value',1);
+    case 6
+        set(handles.radiobutton_SD,'Value',1);
 end
 handles.VFch=VFch;
 set(handles.viewfinderchb,'Value',VFch);
@@ -361,3 +365,14 @@ function edit_BrightTime_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in radiobutton_SD.
+function radiobutton_SD_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton_SD (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton_SD
+handles.Op=6;
+guidata(hObject, handles);
