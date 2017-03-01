@@ -6,6 +6,14 @@ global efDr efDg efDb;
 r=658;
 g=532;
 b=458;
+try
+    lambdas=evalin('base', 'lambdas');
+catch
+    lambdas=[r,g,b];
+end
+r=lambdas(1);
+g=lambdas(2);
+b=lambdas(3);
 
 handles.S=SetSystem;
 if(exist('lambda','var'))
@@ -135,9 +143,24 @@ for i = 1:size(handles.Br,1)
            if(i==1)
                W1(i)=0;
                Hi1(i)=0;
-           elseif i>2
+           elseif i>2%==3
                W1(i) = 2*W1(i-1)-W1(i-2); % liniowa aproksymacja nastêpnego punktu, jeœli nie uda³o siê go lepiej wyliczyæ
                Hi1(i) = 2*Hi1(i-1)-Hi1(i-2);
+           elseif i>3
+               a=(W1(i-3)-W1(i-2))/(Hi1(i-3)^2-Hi1(i-2)^2);
+               b=Hi1(i-1)-a*W1(i-1)^2;
+               %d=((W1(i-1)-W1(i-2))^2+(Hi1(i-1)-Hi1(i-2))^2)^0.5;
+               xw = 2*W1(i-1)-W1(i-2);
+               yw = a*xw+b;
+               yh = 2*Hi1(i-1)-Hi1(i-2);
+               xh = ((yh-b)/a)^0.5;
+               if xw^2+yw^2 < xh^2+yh^2
+                   W1(i) = xw;
+                   Hi1(i) = yw;
+               else
+                   W1(i) = xh;
+                   Hi1(i) = yh;
+               end
            else
                W1(i) = W1(i-1);
                Hi1(i) = Hi1(i-1);
