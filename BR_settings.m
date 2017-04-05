@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 05-Apr-2017 11:42:30
+% Last Modified by GUIDE v2.5 05-Apr-2017 17:23:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -143,6 +143,10 @@ end
 if ~exist('SPointsB','var');
     SPointsB=[3:2:10 15:8:40 41:2:50 51:8:80];
 end
+if ~exist('FitFresnel','var');
+    FitFresnel=0;
+end
+handles.FitFresnel=FitFresnel;
 handles.SPointsR=SPointsR;
 handles.SPointsB=SPointsB;
 handles.Lang=Lang;
@@ -177,6 +181,7 @@ switch Op
 end
 handles.VFch=VFch;
 set(handles.viewfinderchb,'Value',VFch);
+set(handles.checkbox_FitFresnel,'Value',FitFresnel);
 
 handles.BPoints=BPoints;
 set(handles.edit1,'String',BPoints);
@@ -236,7 +241,8 @@ Lang=handles.Lang;
 %SPoints=handles.SPoints;
 SPointsR=handles.SPointsR;
 SPointsB=handles.SPointsB;
-save('BR_settings.mat','BP','Op','BPoints','VFch','BrightTime','OptTime','Lang','SPointsR','SPointsB');
+FitFresnel=handles.FitFresnel;
+save('BR_settings.mat','BP','Op','BPoints','VFch','BrightTime','OptTime','Lang','SPointsR','SPointsB','FitFresnel');
 
 
 % --- Executes on button press in pbload.
@@ -793,3 +799,14 @@ set(handles.edit5,'String',num2str(SPointsB));
 handles.SPointsB=SPointsB;
 guidata(hObject, handles);
 
+
+% --- Executes on button press in checkbox_FitFresnel.
+function checkbox_FitFresnel_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox_FitFresnel (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkbox_FitFresnel
+FitFresnel=get(hObject,'Value');
+handles.FitFresnel=FitFresnel;
+guidata(hObject, handles);
