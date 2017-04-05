@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 05-Apr-2017 17:23:44
+% Last Modified by GUIDE v2.5 05-Apr-2017 18:02:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -810,3 +810,57 @@ function checkbox_FitFresnel_Callback(hObject, eventdata, handles)
 FitFresnel=get(hObject,'Value');
 handles.FitFresnel=FitFresnel;
 guidata(hObject, handles);
+
+
+% --------------------------------------------------------------------
+function Windows_Callback(hObject, eventdata, handles)
+% hObject    handle to Windows (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function BrightnesWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to BrightnesWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if strcmp(handles.BrightnesWindow.Checked, 'on')
+    set(handles.BrightnesWindow,'Checked','off');
+else
+    set(handles.BrightnesWindow,'Checked','on');
+end
+
+
+% --------------------------------------------------------------------
+function SPointsWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to SPointsWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function OptimInfo_Callback(hObject, eventdata, handles)
+% hObject    handle to OptimInfo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function SimAnealingWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to SimAnealingWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function FresnelFitPlots_Callback(hObject, eventdata, handles)
+% hObject    handle to FresnelFitPlots (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function FinalOptWindow_Callback(hObject, eventdata, handles)
+% hObject    handle to FinalOptWindow (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
