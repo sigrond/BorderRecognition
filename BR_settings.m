@@ -22,7 +22,7 @@ function varargout = BR_settings(varargin)
 
 % Edit the above text to modify the response to help BR_settings
 
-% Last Modified by GUIDE v2.5 29-Mar-2017 12:43:56
+% Last Modified by GUIDE v2.5 05-Apr-2017 11:42:30
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -281,9 +281,9 @@ set(handles.edit_BrightTime,'String',BrightTime);
 handles.OptTime=OptTime;
 set(handles.edit_OptTime,'String',OptTime);
 handles.SPointsR=SPointsR;
-set(handles.edit4,'String',SPointsR);
+set(handles.edit4,'String',num2str(SPointsR));
 handles.SPointsB=SPointsB;
-set(handles.edit5,'String',SPointsB);
+set(handles.edit5,'String',num2str(SPointsB));
 
 % Update handles structure
 guidata(hObject, handles);
@@ -768,5 +768,28 @@ function radiobutton_BR_sel_sim_ane_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton_BR_sel_sim_ane
 handles.BP=3;
+guidata(hObject, handles);
+
+
+% --- Executes on button press in pushbuttonResetRed.
+function pushbuttonResetRed_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonResetRed (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+SPointsR=[3:2:10 15:8:40 41:2:50 51:8:80];
+set(handles.edit4,'String',num2str(SPointsR));
+handles.SPointsR=SPointsR;
+guidata(hObject, handles);
+
+
+
+% --- Executes on button press in pushbuttonResetBlue.
+function pushbuttonResetBlue_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonResetBlue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+SPointsB=[3:2:10 15:8:40 41:2:50 51:8:80];
+set(handles.edit5,'String',num2str(SPointsB));
+handles.SPointsB=SPointsB;
 guidata(hObject, handles);
 
