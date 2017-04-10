@@ -1,6 +1,6 @@
-#BorderRecognition
+# BorderRecognition
 
-###Projekt mający na celu znajdować "ramkę" obrazu rozproszeniowego Mie'go.
+### Projekt mający na celu znajdować "ramkę" obrazu rozproszeniowego Mie'go.
 Projekt jest częścią pracowni dyplmowej inżynierskiej.
 
 "Ramka" jest rysowana funkcją BorderCreation
@@ -15,7 +15,7 @@ Argumenty te opisują położenie kropli zawieszonej w pułapce oraz położenie
 
 
 
-##Atomatyzacja znajdowania szukanych zmiennych
+## Atomatyzacja znajdowania szukanych zmiennych
 
 Wstępnie znajduję ramkę (szukane zmienne) przez maksymalizację puntów jasnych wewnątrz ramki (aktualne parametry)
 i ciemnych na zewnątrz ramki. Realizuję to za pomocą fminsearch i funkcji celu BrightnesScalarization.
@@ -37,7 +37,7 @@ spodziewam się znaleźć wzór dyfrakcyjny. W celu znalezienia pixeli na tej pr
 Bresenhama. Znajdę największe maximum i minimum (lewo i prwostronna pochodna zerowa, aby pominąć wartość na brzegu odcinka).
 Maximum dyfrakcyjne jest w geometrycznym środku między minimum dyfrakcyjnym, a szukaną granicą światła i cienia.
 
-##Raport za semestr 16Z
+## Raport za semestr 16Z
 [Raport](https://github.com/sigrond/BorderRecognition/raw/master/RaportPDI1.odt.pdf)
 
 ##Zależności i użyte toolboxy Matlaba
@@ -67,14 +67,14 @@ p =
 
 
 
-##Wywołanie demonstracji w Matlabie
+## Wywołanie demonstracji w Matlabie
 Demonstarcja z odpowiednimi parametrami wywoływana jest poleceniem:
 ```Matlab
 quickstart
 ```
 
-##Wyniki profilera
-####Wybrane wyniki profilera(RayTracing natywnie w matlabie):
+## Wyniki profilera
+#### Wybrane wyniki profilera(RayTracing natywnie w matlabie):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -89,7 +89,7 @@ quickstart
 | BrightnesScalarization |	293 	|	18.091 s |	2.166 s 	|
 | cross 				 |	2657202 |	5.826 s  |	5.826 s 	|
 
-####Wybrane wyniki profilera(RayTracing w MEX C++):
+#### Wybrane wyniki profilera(RayTracing w MEX C++):
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -101,7 +101,7 @@ quickstart
 | BrightnesScalarization |	310		|	9.121 s	 |	2.403 s		|
 | RayTracing_MEX		 |	892560	|	2.998 s	 |	2.998 s		|
 
-####Wybrane wyniki po zmienieniu mało wydajnego kawałka kodu w Border Function:
+#### Wybrane wyniki po zmienieniu mało wydajnego kawałka kodu w Border Function:
 
 | Function Name		     |	Calls   | Total Time |	Self Time   |
 |------------------------|----------|------------|--------------|
@@ -116,13 +116,13 @@ quickstart
 | RayTracing_MEX		 |	892560	|	1.717 s	 |	1.717 s		|
 
 
-##Do zrobienia:
+## Do zrobienia:
 - [x] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci. są mapy dla par wsp. i f-celu
 - [x] Wyniki z profilera
 - [x] Kolory na obrazie jasnych punktów dla kanałów
 - [ ] Liczniki czasu na paskach okienek
-- [ ] Optymalizacja dla par wsp. Xi,Xj i f-celu
-- [ ] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
+- [x] Optymalizacja dla par wsp. Xi,Xj i f-celu
+- [x] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
 - [ ] Więcej przykładów
 - [x] Wyniki profilera dla RayTracing w C++
-- [ ] Fitowanie całek Frenzela
+- [x] Fitowanie całek Frenzela
