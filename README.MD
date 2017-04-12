@@ -40,7 +40,7 @@ Maximum dyfrakcyjne jest w geometrycznym środku między minimum dyfrakcyjnym, a
 ## Raport za semestr 16Z
 [Raport](https://github.com/sigrond/BorderRecognition/raw/master/RaportPDI1.odt.pdf)
 
-##Zależności i użyte toolboxy Matlaba
+## Zależności i użyte toolboxy Matlaba
 license('inuse')
 image_toolbox
 matlab
@@ -120,7 +120,7 @@ quickstart
 - [x] Mapy Wartości i gradientów - da się zrobić 10x10x10x10x10x10 przy następnym rzędzie wielkości nie starczy pamięci. są mapy dla par wsp. i f-celu
 - [x] Wyniki z profilera
 - [x] Kolory na obrazie jasnych punktów dla kanałów
-- [ ] Liczniki czasu na paskach okienek
+- [x] Liczniki czasu na paskach okienek. progress bar
 - [x] Optymalizacja dla par wsp. Xi,Xj i f-celu
 - [x] Sprawdzić czy da się ręcznie lepiej ustawić i zapisać wyniki
 - [ ] Więcej przykładów
