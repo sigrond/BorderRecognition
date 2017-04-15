@@ -7,8 +7,21 @@
 %   inp - input data.
 %   outpT - target data.
 
-x = inp;
-t = outpT;
+fnames=dir;
+fnames = {fnames.name};
+j=0;
+for i=1:size(fnames,2)
+    startIndex = regexp(fnames(i),'TD\w*\w*.mat');
+    if ~isempty(startIndex{1})
+        load(fnames{i});
+        j=j+1;
+        inp(j,:)=reshape(Frame(:,:,1)+Frame(:,:,2)+Frame(:,:,3),480*640,1);
+        outpT(j,:)=[Pk PCCD];
+    end
+end
+
+x = inp';
+t = outpT';
 
 % Choose a Training Function
 % For a list of all training functions type: help nntrain
@@ -18,7 +31,7 @@ t = outpT;
 trainFcn = 'trainscg';  % Scaled conjugate gradient backpropagation.
 
 % Create a Fitting Network
-hiddenLayerSize = 10;
+hiddenLayerSize = 12;
 net = fitnet(hiddenLayerSize,trainFcn);
 
 % Choose Input and Output Pre/Post-Processing Functions

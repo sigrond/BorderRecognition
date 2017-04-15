@@ -487,7 +487,7 @@ elseif Op==2
     mainProgressBar = myWaitBarUpdate( mainProgressBar );
 elseif Op==3
     if exist('myNeuralNetworkFunction','file')
-        Args = myNeuralNetworkFunction(reshape(Frame,480*640*3,1));
+        Args = myNeuralNetworkFunction(reshape(Frame(:,:,1)+Frame(:,:,2)+Frame(:,:,3),480*640,1));
         x=Args;
         [X Y]=BorderFunction(Args(1),Args(2),Args(3),Args(4),Args(5),Args(6),r);
             delete(hp);
